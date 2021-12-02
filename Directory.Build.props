@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!--  Build directories  -->
+  <PropertyGroup>
+    <RootDir>$(SolutionDir)</RootDir>
+    <Stage>$(RootDir)\Stage</Stage>
+    <BuildDir>$(RootDir)\Build</BuildDir>
+    <BaseIntermediateOutputPath>$(Stage)\obj\$(MSBuildProjectFile)_$(Configuration)_$(Platform)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	<PlatformTarget>x64</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <OutputPath>$(Stage)\$(Configuration)\$(MSBuildProjectFile)</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NLog" Version="4.7.5" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+
+git:
+https://dev.azure.com/gguc/_git/AdventOfCode
+https://github.com/squid-box/adventofcode2020
+
+md:
+https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
+https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md

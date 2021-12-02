@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
+  </ItemGroup>
+
+</Project>

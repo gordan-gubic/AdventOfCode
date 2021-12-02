@@ -1,0 +1,37 @@
+# Build system files
+build*.log
+Stage
+Logs
+
+# Visual Studio files
+.vs/
+Source/**/obj/*
+Source/**/bin/*
+*.suo
+*.*sdf
+*.user
+*.swp
+*.bak
+*.lnk
+*.tmp_proj
+StyleCop.Cache
+
+# NuGet
+[Pp]ackages/
+NuGet.Config
+
+# Resharper files
+_ReSharper*
+*.DotSettings.user
+*.resharper
+
+# .Git-files
+*.orig
+
+# Office Temp Files
+~$*
+
+# Installer Files
+**/Harvested*.wxs
+**/*.wixpdb
+**/*.wixobj

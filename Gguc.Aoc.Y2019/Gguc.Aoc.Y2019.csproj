@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Compile Remove="Services\Obsolete\IntcodeEngine-07.cs" />
+    <Compile Remove="Services\Obsolete\IntcodeEngine02.cs" />
+    <Compile Remove="Services\Obsolete\IntcodeEngine05.cs" />
+    <Compile Remove="Services\Obsolete\IntcodeEngine07.cs" />
+    <Compile Remove="Services\Obsolete\IntcodeEngine09.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Services\Obsolete\IntcodeEngine-07.cs" />
+    <None Include="Services\Obsolete\IntcodeEngine02.cs" />
+    <None Include="Services\Obsolete\IntcodeEngine05.cs" />
+    <None Include="Services\Obsolete\IntcodeEngine07.cs" />
+    <None Include="Services\Obsolete\IntcodeEngine09.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Resources\Gguc.Aoc.Resources.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2018\Gguc.Aoc.Y2018.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2019\Gguc.Aoc.Y2019.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2020\Gguc.Aoc.Y2020.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2021\Gguc.Aoc.Y2021.csproj" />
+  </ItemGroup>
+
+</Project>
