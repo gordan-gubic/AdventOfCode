@@ -13,6 +13,5 @@ global using Gguc.Aoc.Core.Logging;
 global using Gguc.Aoc.Core.Models;
 global using Gguc.Aoc.Core.Services;
 global using Gguc.Aoc.Core.Utils;
-global using Gguc.Aoc.Y2018.Days;
-global using Gguc.Aoc.Y2018.Models;
-global using Gguc.Aoc.Y2018.Services;
+global using Gguc.Aoc.Y2020.Days;
+global using Gguc.Aoc.Y2020.Models;

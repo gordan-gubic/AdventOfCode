@@ -1,13 +1,16 @@
-﻿#define LOG
+﻿#define LOGx
 #define STOPWATCH
 
 namespace Gguc.Aoc.Y2021.Days;
 
 public class Day02 : Day
 {
+    private const int YEAR = 2021;
+    private const int DAY = 2;
+
     private List<(DiveOperation, int)> _data;
 
-    public Day02(ILog log, IParser parser) : base(log, parser)
+    public Day02(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -16,9 +19,7 @@ public class Day02 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2021;
-        Parser.Day = 2;
-        Parser.Type = ParserFileType.Real;
+        Parser.Type = ParserFileType.Example;
 
         _data = Parser.Parse(Convert);
     }
@@ -26,13 +27,11 @@ public class Day02 : Day
     /// <inheritdoc />
     public override void DumpInput()
     {
-        // _data.DumpCollection("List");
+        DumpData();
     }
 
     protected override void ComputePart1()
     {
-        var result = 0;
-
         var distance = 0;
         var depth = 0;
 
@@ -62,8 +61,6 @@ public class Day02 : Day
 
     protected override void ComputePart2()
     {
-        var result = 0;
-
         var aim = 0;
         var distance = 0;
         var depth = 0;
@@ -93,18 +90,25 @@ public class Day02 : Day
         Result = distance * depth;
     }
 
-    private int Three(int v)
-    {
-        return 0; // _data[v] + _data[v + 1] + _data[v + 2];
-    }
-
     private (DiveOperation, int) Convert(string input)
     {
         var x = input.Split(' ');
+        
         Enum.TryParse<DiveOperation>(x[0], true, out var e);
-        return (e, int.Parse(x[1]));
+        int.TryParse(x[1], out var i);
+
+        return (e, i);
     }
 
+    [Conditional("LOG")]
+    private void DumpData()
+    {
+        if (!Log.EnableDebug) return;
+
+        Debug();
+
+        _data.DumpCollection();
+    }
 }
 
 #if DUMP

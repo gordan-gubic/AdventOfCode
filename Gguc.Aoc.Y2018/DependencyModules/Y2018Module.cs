@@ -11,9 +11,16 @@ public class Y2018Module : Module
     /// <inheritdoc />
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<Day01>().Named<IDay>(Registar.Y2018D01);
-        builder.RegisterType<Day01>().Keyed<IDay>(201801);
-        //builder.RegisterType<Day02>().Named<IDay>(Registar.Y2021D02);
+        // Days
+        var dayTypes = typeof(IDay).GetAllTypesInAssembly(Assembly.GetExecutingAssembly());
+
+        foreach (var dayType in dayTypes)
+        {
+            var constants = dayType.GetAllConstantValues<int>();
+            var key = $"{constants["YEAR"]:D4}{constants["DAY"]:D2}".ToInt();
+
+            builder.RegisterType(dayType).Keyed<IDay>(key);
+        }
 
         // Misc
         // ...

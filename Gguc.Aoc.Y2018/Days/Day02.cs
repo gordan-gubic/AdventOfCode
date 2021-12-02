@@ -3,15 +3,15 @@
 
 namespace Gguc.Aoc.Y2018.Days;
 
-public class Day01 : Day
+public class Day02 : Day
 {
     private const int YEAR = 2018;
-    private const int DAY = 1;
+    private const int DAY = 2;
 
     private List<string> _source;
     private List<string> _data;
 
-    public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day02(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -65,6 +65,7 @@ public class Day01 : Day
 
         _data.DumpCollection();
     }
+
 }
 
 #if DUMP

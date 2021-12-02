@@ -5,8 +5,7 @@ public class App
     private static readonly string ClassId = nameof(App);
     private static TraceLog _log;
 
-    private static readonly string DayKey = Registar.Y2021D02;
-    private static readonly int DayKey1 = 201801;
+    private static readonly int DayKey = 202103;
 
     public App()
     {
@@ -32,8 +31,7 @@ public class App
     {
         _log.InfoLog(ClassId, "Begin");
 
-        // var day = MainContainer.ResolveNamed<IDay>(DayKey);
-        var day = MainContainer.ResolveKeyed<IDay>(DayKey1);
+        var day = MainContainer.ResolveKeyed<IDay>(DayKey);
 
         Header(day);
 
@@ -60,7 +58,7 @@ public class App
     private void Header(IDay day)
     {
         var bar = "".PadLeft(80, '*');
-        var message = $"\n{bar}\n* Year: {day.Year}\n* Day: {day.Id}\n{bar}";
+        var message = $"\n{bar}\n* Year..: {day.Year}\n* Day...: {day.Id}\n{bar}";
 
         _log.InfoLog(ClassId, message);
     }
@@ -74,7 +72,7 @@ public class App
     {
         var result = day.SolutionPart1();
 
-        _log.WarnLog(ClassId, $" *** Day [{day.ClassId}] *** Part 01 *** Result: [{result}]");
+        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Result: [{result}]");
         SetClipboard(result);
     }
 
@@ -82,7 +80,7 @@ public class App
     {
         var result = day.SolutionPart2();
 
-        _log.WarnLog(ClassId, $" *** Day [{day.ClassId}] *** Part 02 *** Result: [{result}]");
+        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Result: [{result}]");
         SetClipboard(result);
     }
 

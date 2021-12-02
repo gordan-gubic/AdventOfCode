@@ -1,17 +1,16 @@
 ﻿#define LOG
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2018.Days;
+namespace Gguc.Aoc.Y2021.Days;
 
-public class Day01 : Day
+public class Day03 : Day
 {
-    private const int YEAR = 2018;
-    private const int DAY = 1;
+    private const int YEAR = 2021;
+    private const int DAY = 3;
 
-    private List<string> _source;
-    private List<string> _data;
+    private List<int> _data;
 
-    public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day03(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -22,13 +21,7 @@ public class Day01 : Day
     {
         Parser.Type = ParserFileType.Example;
 
-        _source = Parser.Parse();
-    }
-
-    /// <inheritdoc />
-    protected override void ProcessData()
-    {
-        _data = _source;
+        _data = Parser.Parse(Converters.ToInt);
     }
 
     /// <inheritdoc />
@@ -53,7 +46,7 @@ public class Day01 : Day
 
     private int Convert(string input)
     {
-        return input.ToInt();
+        return 0;
     }
 
     [Conditional("LOG")]

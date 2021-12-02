@@ -1,12 +1,16 @@
-﻿#define LOG
+﻿#define LOGx
 #define STOPWATCH
 
 namespace Gguc.Aoc.Y2021.Days;
+
 public class Day01 : Day
 {
+    private const int YEAR = 2021;
+    private const int DAY = 1;
+
     private List<int> _data;
 
-    public Day01(ILog log, IParser parser) : base(log, parser)
+    public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -15,17 +19,15 @@ public class Day01 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2021;
-        Parser.Day = 1;
         Parser.Type = ParserFileType.Real;
 
-        _data = Parser.Parse(Convert);
+        _data = Parser.Parse(Converters.ToInt);
     }
 
     /// <inheritdoc />
     public override void DumpInput()
     {
-        //_data.DumpCollection("List");
+        DumpData();
     }
 
     protected override void ComputePart1()
@@ -35,13 +37,13 @@ public class Day01 : Day
 
         foreach (var item in _data)
         {
-            if(previous == 0)
+            if (previous == 0)
             {
                 previous = item;
                 continue;
             }
 
-            if(item > previous)
+            if (item > previous)
             {
                 result++;
             }
@@ -61,15 +63,15 @@ public class Day01 : Day
         for (int i = 1; i < _data.Count - 2; i++)
         {
             current = Three(i);
-            Log.Debug(current.ToString());
-            if(current > previous)
+
+            if (current > previous)
             {
                 result++;
             }
+
             previous = current;
         }
 
-            Log.Debug(result.ToString());
         Result = result;
     }
 
@@ -78,11 +80,15 @@ public class Day01 : Day
         return _data[v] + _data[v + 1] + _data[v + 2];
     }
 
-    private int Convert(string input)
+    [Conditional("LOG")]
+    private void DumpData()
     {
-        return input.ToInt();
-    }
+        if (!Log.EnableDebug) return;
 
+        Debug();
+
+        _data.DumpCollection();
+    }
 }
 
 #if DUMP

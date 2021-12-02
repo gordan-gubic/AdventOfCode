@@ -2,7 +2,7 @@
 
 public static class Paths
 {
-    public static readonly string InputSourcePath = @"c:\git_gordan\ScGordan\AdventOfCode\Gguc.Aoc.Resources\";
+    public static readonly string InputSourcePath = @"..\..\..\Gguc.Aoc.Resources\";
 
     public static readonly string InputSourceTest = Path.Combine(InputSourcePath, "Test", "test.txt");
 
