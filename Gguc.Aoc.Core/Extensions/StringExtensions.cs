@@ -30,26 +30,6 @@ public static class StringExtensions
         return string.Join("", value.Reverse());
     }
 
-    public static string ToBinaryString(this int value)
-    {
-        return Convert.ToString(value, 2);
-    }
-
-    public static string ToBinaryString(this long value)
-    {
-        return Convert.ToString(value, 2);
-    }
-
-    public static int FromBinaryStringToInt(this string value)
-    {
-        return Convert.ToInt32(value, 2);
-    }
-
-    public static long FromBinaryStringToLong(this string value)
-    {
-        return Convert.ToInt64(value, 2);
-    }
-
     public static string JoinToString(this IEnumerable<char> values, string separator = "")
     {
         return string.Join(separator, values);

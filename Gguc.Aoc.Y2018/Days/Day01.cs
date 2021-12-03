@@ -1,4 +1,4 @@
-﻿#define LOG
+﻿#define LOGx
 #define STOPWATCH
 
 namespace Gguc.Aoc.Y2018.Days;
@@ -8,8 +8,7 @@ public class Day01 : Day
     private const int YEAR = 2018;
     private const int DAY = 1;
 
-    private List<string> _source;
-    private List<string> _data;
+    private List<int> _data;
 
     public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
@@ -20,15 +19,9 @@ public class Day01 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Example;
+        Parser.Type = ParserFileType.Real;
 
-        _source = Parser.Parse();
-    }
-
-    /// <inheritdoc />
-    protected override void ProcessData()
-    {
-        _data = _source;
+        _data = Parser.Parse(Converters.ToInt);
     }
 
     /// <inheritdoc />
@@ -39,14 +32,45 @@ public class Day01 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0;
+        var result = 0L;
+
+        foreach (var value in _data)
+        {
+            result += value;
+        }
 
         Result = result;
     }
 
     protected override void ComputePart2()
     {
-        var result = 0;
+        var result = 0L;
+
+        var total = 0;
+        var duplicate = false;
+        var freqs = new HashSet<long>();
+
+        while(true)
+        {
+            foreach (var value in _data)
+            {
+                total += value;
+
+                if(freqs.Contains(total))
+                {
+                    duplicate = true;
+                    break;
+                }
+
+                freqs.Add(total);
+            }
+
+            if(duplicate)
+            {
+                result = total;
+                break;
+            }
+        }
 
         Result = result;
     }
@@ -63,7 +87,7 @@ public class Day01 : Day
 
         Debug();
 
-        _data.DumpCollection();
+        //_data.DumpCollection();
     }
 }
 
