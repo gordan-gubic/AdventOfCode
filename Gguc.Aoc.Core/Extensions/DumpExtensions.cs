@@ -3,27 +3,33 @@
 public static class DumpExtensions
 {
     [Conditional("LOG")]
-    public static void Dump(this object input, string title = null)
+    public static void Dump(this object input, string title = null, bool newLine = false)
     {
         DumpTitle(title);
 
-        Trace.WriteLine($"{input}");
+        var nl = newLine ? Environment.NewLine : "";
+
+        Trace.WriteLine($"{nl}{input}");
     }
 
     [Conditional("LOG")]
-    public static void DumpJson(this object input, string title = null)
+    public static void DumpJson(this object input, string title = null, bool newLine = false)
     {
         DumpTitle(title);
 
-        Trace.WriteLine($"{input.ToJson()}");
+        var nl = newLine ? Environment.NewLine : "";
+
+        Trace.WriteLine($"{nl}{input.ToJson()}");
     }
 
     [Conditional("LOG")]
-    public static void DumpJsonIndented(this object input, string title = null)
+    public static void DumpJsonIndented(this object input, string title = null, bool newLine = false)
     {
         DumpTitle(title);
 
-        Trace.WriteLine($"{input.ToJsonIndented()}");
+        var nl = newLine ? Environment.NewLine : "";
+
+        Trace.WriteLine($"{nl}{input.ToJsonIndented()}");
     }
 
     [Conditional("LOG")]
@@ -138,9 +144,8 @@ public static class DumpExtensions
     {
         if (title.IsNotWhitespace())
         {
-            Trace.WriteLine("".PadLeft(80, '-'));
-            Trace.WriteLine($"*** {title}");
-            Trace.WriteLine("".PadLeft(80, '-'));
+            Trace.WriteLine($"**  {title}");
+            Trace.WriteLine("".PadLeft(80, '*'));
         }
     }
 }

@@ -2,6 +2,10 @@
 
 public class Map<T>
 {
+    public Map(int size) : this(size, size)
+    {
+    }
+
     public Map(int width, int height)
     {
         Width = width;

@@ -9,6 +9,11 @@ public static class ListExtensions
         return input[index];
     }
 
+    public static void SetAll<T>(this IList<T> list, T defaultValue = default)
+    {
+        for(int i = 0; i < list.Count(); i++) list[i] = defaultValue;
+    }
+
     public static void SetAll<TKey, TValue>(this IDictionary<TKey, TValue> dict, TValue defaultValue = default)
     {
         foreach (var key in dict.Keys.ToList()) dict[key] = defaultValue;
