@@ -3,13 +3,14 @@
 
 namespace Gguc.Aoc.Core.Templates;
 
-
 public class Day00 : Day
 {
+    private const int YEAR = 2099;
+    private const int DAY = 0;
     private List<string> _source;
     private List<string> _data;
 
-    public Day00(ILog log, IParser parser) : base(log, parser)
+    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -18,8 +19,6 @@ public class Day00 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2020;
-        Parser.Day = 1;
         Parser.Type = ParserFileType.Test;
 
         _source = Parser.Parse(ConvertInput);
@@ -29,12 +28,6 @@ public class Day00 : Day
     protected override void ProcessData()
     {
         _data = _source;
-    }
-
-    /// <inheritdoc />
-    public override void DumpInput()
-    {
-        DumpData();
     }
 
     protected override void ComputePart1()
@@ -50,6 +43,12 @@ public class Day00 : Day
         return input;
     }
 
+    #region Dump
+    public override void DumpInput()
+    {
+        DumpData();
+    }
+
     [Conditional("LOG")]
     private void DumpData()
     {
@@ -60,6 +59,7 @@ public class Day00 : Day
         _data[0].Dump("Item");
         _data.DumpCollection("List");
     }
+    #endregion Dump
 }
 
 #if DUMP

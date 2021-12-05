@@ -5,10 +5,13 @@ namespace Gguc.Aoc.Y2019.Days;
 
 public class Day12 : Day
 {
+    private const int YEAR = 2019;
+    private const int DAY = 12;
+
     private List<string> _source;
     private List<string> _data;
 
-    public Day12(ILog log, IParser parser) : base(log, parser)
+    public Day12(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -17,8 +20,6 @@ public class Day12 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2019;
-        Parser.Day = 12;
         Parser.Type = ParserFileType.Test;
 
         _source = Parser.Parse(ConvertInput);

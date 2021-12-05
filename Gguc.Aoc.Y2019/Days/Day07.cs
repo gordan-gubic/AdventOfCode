@@ -5,12 +5,15 @@ namespace Gguc.Aoc.Y2019.Days;
 
 public class Day07 : Day
 {
+    private const int YEAR = 2019;
+    private const int DAY = 7;
+
     private List<long> _source;
     private List<long> _data;
     private IEnumerable<IEnumerable<int>> _permutations1;
     private IEnumerable<IEnumerable<int>> _permutations2;
 
-    public Day07(ILog log, IParser parser) : base(log, parser)
+    public Day07(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -19,8 +22,6 @@ public class Day07 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2019;
-        Parser.Day = 7;
         Parser.Type = ParserFileType.Real;
 
         _source = Parser.ParseSequence(Converters.ToLong);

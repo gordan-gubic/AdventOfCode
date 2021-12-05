@@ -5,11 +5,14 @@ namespace Gguc.Aoc.Y2019.Days;
 
 public class Day10 : Day
 {
+    private const int YEAR = 2019;
+    private const int DAY = 10;
+
     private Map<bool> _source;
     private Map<int> _visible;
     private List<Point> _allMeteors;
 
-    public Day10(ILog log, IParser parser) : base(log, parser)
+    public Day10(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -18,8 +21,6 @@ public class Day10 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Year = 2019;
-        Parser.Day = 10;
         Parser.Type = ParserFileType.Real;
 
         _source = Parser.ParseMapBool();

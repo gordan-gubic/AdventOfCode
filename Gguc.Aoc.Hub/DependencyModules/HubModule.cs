@@ -21,7 +21,7 @@ public class HubModule : Module
         // Modules
         builder.RegisterModule<CoreModule>();
         builder.RegisterModule<Y2018Module>();
-        // builder.RegisterModule<Y2019Module>();
+        builder.RegisterModule<Y2019Module>();
         // builder.RegisterModule<Y2020Module>();
         builder.RegisterModule<Y2021Module>();
     }
