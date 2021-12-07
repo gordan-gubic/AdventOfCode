@@ -35,6 +35,13 @@ public static class StringExtensions
         return string.Join(separator, values);
     }
 
+    public static List<int> ToIntSequence(this string input, char separator = ',')
+    {
+        var list = new List<int>();
+        input.Split(separator, StringSplitOptions.RemoveEmptyEntries).ForEach(x => list.Add(x.ToInt()));
+        return list;
+    }
+
     public static List<long> ToSequence(this string input, char separator = ',')
     {
         var list = new List<long>();

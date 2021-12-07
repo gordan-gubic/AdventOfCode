@@ -1,129 +1,118 @@
 ﻿#define LOG
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2020.Days
+namespace Gguc.Aoc.Y2020.Days;
+
+public class Day01 : Day
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using Gguc.Aoc.Core.Enums;
-    using Gguc.Aoc.Core.Extensions;
-    using Gguc.Aoc.Core.Logging;
-    using Gguc.Aoc.Core.Services;
-    using Gguc.Aoc.Core.Utils;
+    private List<int> _source;
+    private HashSet<int> _data;
 
-    public class Day01 : Day
+    public Day01(ILog log, IParser parser) : base(log, parser)
     {
-        private List<int> _source;
-        private HashSet<int> _data;
+        EnableDebug();
+        Initialize();
+    }
 
-        public Day01(ILog log, IParser parser) : base(log, parser)
+    /// <inheritdoc />
+    protected override void InitParser()
+    {
+        Parser.Year = 2020;
+        Parser.Day = 1;
+        Parser.Type = ParserFileType.Test;
+
+        _source = Parser.Parse(Converters.ToInt);
+    }
+
+    /// <inheritdoc />
+    protected override void ProcessData()
+    {
+        _data = new HashSet<int>(_source);
+    }
+
+    /// <inheritdoc />
+    public override void DumpInput()
+    {
+        DumpData();
+    }
+
+    protected override void ComputePart1()
+    {
+        var tempList = new Stack<int>(_data);
+        var target = 2020;
+
+        do
         {
-            EnableDebug();
-            Initialize();
-        }
+            var number = tempList.Pop();
 
-        /// <inheritdoc />
-        protected override void InitParser()
+            var (match, x, y) = FindMatch(target, number);
+            if (match)
+            {
+                Add(x * y, true);
+                return;
+            }
+        } while (tempList.Count > 0);
+    }
+
+    protected override void ComputePart2()
+    {
+        var tempList1 = new Stack<int>(_data);
+
+        do
         {
-            Parser.Year = 2020;
-            Parser.Day = 1;
-            Parser.Type = ParserFileType.Test;
+            var number1 = tempList1.Pop();
+            var target = 2020 - number1;
 
-            _source = Parser.Parse(Converters.ToInt);
-        }
-
-        /// <inheritdoc />
-        protected override void ProcessData()
-        {
-            _data = new HashSet<int>(_source);
-        }
-
-        /// <inheritdoc />
-        public override void DumpInput()
-        {
-            DumpData();
-        }
-
-        protected override void ComputePart1()
-        {
-            var tempList = new Stack<int>(_data);
-            var target = 2020;
+            var tempList2 = new Stack<int>(tempList1);
 
             do
             {
-                var number = tempList.Pop();
+                var number = tempList2.Pop();
 
-                var (match, x, y) = FindMatch(target, number); 
+                var (match, x, y) = FindMatch(target, number);
                 if (match)
                 {
-                    Add(x * y, true);
+                    Add(number1 * x * y, true);
                     return;
                 }
-            } while (tempList.Count > 0);
-        }
+            } while (tempList2.Count > 0);
+        } while (tempList1.Count > 0);
+    }
 
-        protected override void ComputePart2()
+    private (bool, int, int) FindMatch(int target, int number)
+    {
+        var diff = target - number;
+
+        if (_data.Contains(diff))
         {
-            var tempList1 = new Stack<int>(_data);
-
-            do
-            {
-                var number1 = tempList1.Pop();
-                var target = 2020 - number1;
-
-                var tempList2 = new Stack<int>(tempList1);
-
-                do
-                {
-                    var number = tempList2.Pop();
-
-                    var (match, x, y) = FindMatch(target, number);
-                    if (match)
-                    {
-                        Add(number1 * x * y, true);
-                        return;
-                    }
-                } while (tempList2.Count > 0);
-            } while (tempList1.Count > 0);
+            Console.WriteLine($"{number}, {diff}, {number + diff}, {number * diff}");
+            return (true, number, diff);
         }
 
-        private (bool, int, int) FindMatch(int target, int number)
+        return (false, 0, 0);
+    }
+
+    [Conditional("LOG")]
+    private void DumpData()
+    {
+        Log.DebugLog(ClassId);
+
+        if (_data == null)
         {
-            var diff = target - number;
-
-            if (_data.Contains(diff))
-            {
-                Console.WriteLine($"{number}, {diff}, {number + diff}, {number * diff}");
-                return (true, number, diff);
-            }
-
-            return (false, 0, 0);
+            Log.WarnLog(ClassId, $"Data is NULL!");
+            return;
         }
 
-        [Conditional("LOG")]
-        private void DumpData()
+        if (_data.Count == 0)
         {
-            Log.DebugLog(ClassId);
-
-            if (_data == null)
-            {
-                Log.WarnLog(ClassId, $"Data is NULL!");
-                return;
-            }
-
-            if (_data.Count == 0)
-            {
-                Log.WarnLog(ClassId, $"Data is EMPTY!");
-                return;
-            }
-
-            // _data[0].Dump("Item");
-            _data.DumpCollection("List");
+            Log.WarnLog(ClassId, $"Data is EMPTY!");
+            return;
         }
+
+        // _data[0].Dump("Item");
+        _data.DumpCollection("List");
     }
 }
 
 #if DUMP
-
 #endif

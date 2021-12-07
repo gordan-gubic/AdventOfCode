@@ -1,19 +1,7 @@
 ﻿#define LOGx
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2020.Days
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using Gguc.Aoc.Core.Enums;
-    using Gguc.Aoc.Core.Extensions;
-    using Gguc.Aoc.Core.Logging;
-    using Gguc.Aoc.Core.Services;
+namespace Gguc.Aoc.Y2020.Days;
 
     public class Day21 : Day
     {
@@ -229,7 +217,6 @@ namespace Gguc.Aoc.Y2020.Days
             }
         }
     }
-}
 
 #if DUMP
 

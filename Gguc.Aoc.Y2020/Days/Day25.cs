@@ -1,134 +1,123 @@
 ﻿#define LOGx
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2020.Days
+namespace Gguc.Aoc.Y2020.Days;
+
+public class Day25 : Day
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using Gguc.Aoc.Core.Enums;
-    using Gguc.Aoc.Core.Extensions;
-    using Gguc.Aoc.Core.Logging;
-    using Gguc.Aoc.Core.Services;
-    using Gguc.Aoc.Core.Utils;
+    private List<string> _source;
+    private List<string> _data;
+    private long _cardNumber;
+    private long _doorNumber;
+    private long _cardLoopSize;
+    private long _doorLoopSize;
 
-    public class Day25 : Day
+    private const long Subject = 7;
+    private const long Salt = 20201227;
+
+    public Day25(ILog log, IParser parser) : base(log, parser)
     {
-        private List<string> _source;
-        private List<string> _data;
-        private long _cardNumber;
-        private long _doorNumber;
-        private long _cardLoopSize;
-        private long _doorLoopSize;
+        EnableDebug();
+        Initialize();
+    }
 
-        private const long Subject = 7;
-        private const long Salt = 20201227;
+    /// <inheritdoc />
+    protected override void InitParser()
+    {
+        Parser.Year = 2020;
+        Parser.Day = 25;
+        Parser.Type = ParserFileType.Real;
 
-        public Day25(ILog log, IParser parser) : base(log, parser)
+        _source = Parser.Parse();
+    }
+
+    /// <inheritdoc />
+    protected override void ProcessData()
+    {
+        _data = _source;
+
+        _cardNumber = _data[0].ToLong();
+        _doorNumber = _data[1].ToLong();
+    }
+
+    /// <inheritdoc />
+    public override void DumpInput()
+    {
+        DumpData();
+    }
+
+    protected override void ComputePart1()
+    {
+        FindLoopSize();
+
+        Info($"LoopSize: Card: [{_cardNumber}, {_cardLoopSize}], door: [{_doorNumber}, {_doorLoopSize}]");
+
+        Result = FindEncryptionKey();
+    }
+
+    protected override void ComputePart2()
+    {
+    }
+
+    private void FindLoopSize()
+    {
+        int i = 1;
+        var subject = Subject;
+
+        Debug($"Loop: {i,4}, subject: [{subject,10}], card: [{_cardNumber,10}], door: [{_doorNumber,10}]");
+
+        while (true)
         {
-            EnableDebug();
-            Initialize();
-        }
+            i++;
 
-        /// <inheritdoc />
-        protected override void InitParser()
-        {
-            Parser.Year = 2020;
-            Parser.Day = 25;
-            Parser.Type = ParserFileType.Real;
+            subject = Loop(subject, Subject);
 
-            _source = Parser.Parse();
-        }
+            if (subject == _cardNumber) _cardLoopSize = i;
+            if (subject == _doorNumber) _doorLoopSize = i;
 
-        /// <inheritdoc />
-        protected override void ProcessData()
-        {
-            _data = _source;
+            Debug($"Loop: {i,4}, subject: [{subject,10}]");
 
-            _cardNumber = _data[0].ToLong();
-            _doorNumber = _data[1].ToLong();
-        }
-
-        /// <inheritdoc />
-        public override void DumpInput()
-        {
-            DumpData();
-        }
-
-        protected override void ComputePart1()
-        {
-            FindLoopSize();
-
-            Info($"LoopSize: Card: [{_cardNumber}, {_cardLoopSize}], door: [{_doorNumber}, {_doorLoopSize}]");
-
-            Result = FindEncryptionKey();
-        }
-
-        protected override void ComputePart2()
-        {
-        }
-
-        private void FindLoopSize()
-        {
-            int i = 1;
-            var subject = Subject;
-
-            Debug($"Loop: {i,4}, subject: [{subject,10}], card: [{_cardNumber,10}], door: [{_doorNumber,10}]");
-
-            while (true)
+            if (_cardLoopSize > 0 || _doorLoopSize > 0)
             {
-                i++;
-
-                subject = Loop(subject, Subject);
-
-                if (subject == _cardNumber) _cardLoopSize = i;
-                if (subject == _doorNumber) _doorLoopSize = i;
-
-                Debug($"Loop: {i,4}, subject: [{subject,10}]");
-
-                if (_cardLoopSize > 0 || _doorLoopSize > 0)
-                {
-                    break;
-                }
+                break;
             }
         }
+    }
 
-        private long FindEncryptionKey()
+    private long FindEncryptionKey()
+    {
+        var loop = Math.Max(_cardLoopSize, _doorLoopSize);
+        var number = (_cardLoopSize > _doorLoopSize) ? _doorNumber : _cardNumber;
+        var encryption = number;
+        Info($"loop: {loop}, init number: [{number,10}]");
+
+        for (int i = 2; i <= loop; i++)
         {
-            var loop = Math.Max(_cardLoopSize, _doorLoopSize);
-            var number = (_cardLoopSize > _doorLoopSize) ? _doorNumber : _cardNumber;
-            var encryption = number;
-            Info($"loop: {loop}, init number: [{number,10}]");
-
-            for (int i = 2; i <= loop; i++)
-            {
-                encryption = Loop(encryption, number);
-                Debug($"Loop: {i,4}, encryption: [{encryption,10}]");
-            }
-
-            return encryption;
+            encryption = Loop(encryption, number);
+            Debug($"Loop: {i,4}, encryption: [{encryption,10}]");
         }
 
-        private long Loop(in long id, in long subject)
-        {
-            var newId = (id * subject) % Salt;
-            return newId;
-        }
+        return encryption;
+    }
 
-        [Conditional("LOG")]
-        private void DumpData()
-        {
-            if (!Log.EnableDebug) return;
+    private long Loop(in long id, in long subject)
+    {
+        var newId = (id * subject) % Salt;
+        return newId;
+    }
 
-            Debug();
+    [Conditional("LOG")]
+    private void DumpData()
+    {
+        if (!Log.EnableDebug) return;
 
-            _data[0].Dump("Item");
-            _cardNumber.DumpJson("_cardNumber");
-            _doorNumber.DumpJson("_doorNumber");
-        }
+        Debug();
+
+        _data[0].Dump("Item");
+        _cardNumber.DumpJson("_cardNumber");
+        _doorNumber.DumpJson("_doorNumber");
     }
 }
 
 #if DUMP
-
 #endif

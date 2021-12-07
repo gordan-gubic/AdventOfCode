@@ -34,6 +34,11 @@ public static class ListExtensions
         foreach (var item in list) action(item);
     }
 
+    public static (T, T) MinMax<T>(this IEnumerable<T> list)
+    {
+        return (list.Min(), list.Max());
+    }
+
     public static Dictionary<TKey, TValue> Copy<TKey, TValue>(this IDictionary<TKey, TValue> dict)
     {
         return dict.ToDictionary(k => k.Key, k => k.Value);

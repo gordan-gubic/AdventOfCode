@@ -1,162 +1,150 @@
 ﻿#define LOG
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2020.Days
+namespace Gguc.Aoc.Y2020.Days;
+
+public class Day09 : Day
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using Gguc.Aoc.Core.Enums;
-    using Gguc.Aoc.Core.Extensions;
-    using Gguc.Aoc.Core.Logging;
-    using Gguc.Aoc.Core.Services;
-    using Gguc.Aoc.Core.Utils;
+    private List<long> _source;
+    private List<long> _data;
 
-    public class Day09 : Day
+    private int PreambleSize = 25;
+    private long _target;
+
+    public Day09(ILog log, IParser parser) : base(log, parser)
     {
-        private List<long> _source;
-        private List<long> _data;
+        EnableDebug();
+        Initialize();
+    }
 
-        private int PreambleSize = 25;
-        private long _target;
+    /// <inheritdoc />
+    protected override void InitParser()
+    {
+        Parser.Year = 2020;
+        Parser.Day = 9;
+        Parser.Type = ParserFileType.Real;
 
-        public Day09(ILog log, IParser parser) : base(log, parser)
+        _source = Parser.Parse(Converters.ToLong);
+    }
+
+    /// <inheritdoc />
+    protected override void ProcessData()
+    {
+        _data = _source;
+    }
+
+    /// <inheritdoc />
+    public override void DumpInput()
+    {
+        DumpData();
+    }
+
+    protected override void ComputePart1()
+    {
+        var preamble = _data.Take(PreambleSize).ToList();
+        var queue = new Queue<long>(_data.TakeLast(_data.Count - PreambleSize));
+
+        do
         {
-            EnableDebug();
-            Initialize();
-        }
+            var target = queue.Dequeue();
 
-        /// <inheritdoc />
-        protected override void InitParser()
-        {
-            Parser.Year = 2020;
-            Parser.Day = 9;
-            Parser.Type = ParserFileType.Real;
+            var match = FindMatchInList(preamble, target);
 
-            _source = Parser.Parse(Converters.ToLong);
-        }
-
-        /// <inheritdoc />
-        protected override void ProcessData()
-        {
-            _data = _source;
-        }
-
-        /// <inheritdoc />
-        public override void DumpInput()
-        {
-            DumpData();
-        }
-
-        protected override void ComputePart1()
-        {
-            var preamble = _data.Take(PreambleSize).ToList();
-            var queue = new Queue<long>(_data.TakeLast(_data.Count - PreambleSize));
-
-            do
+            if (!match)
             {
-                var target = queue.Dequeue();
-
-                var match = FindMatchInList(preamble, target);
-
-                if (!match)
-                {
-                    Log.InfoLog(ClassId, $"Break: {target}");
-                    Result = target;
-                    break;
-                }
-
-                preamble.RemoveAt(0);
-                preamble.Add(target);
-            } while (queue.Count > 0);
-
-            _target = Result;
-        }
-
-        protected override void ComputePart2()
-        {
-            var target = _target;
-
-            var list = _data.ToList();
-
-            do
-            {
-                var (match, x, y) = FindSum(list, target);
-
-                if (match)
-                {
-                    Result = x + y;
-                    Log.DebugLog(ClassId, $"Match: {x}, {y}, Sum=[{Result}]");
-                    break;
-                }
-
-                list.RemoveAt(0);
-            } while (list.Count > 0);
-        }
-
-        private (bool, long, long) FindSum(List<long> input, in long target)
-        {
-            var list = new List<long>();
-
-            foreach (var i in input)
-            {
-                list.Add(i);
-
-                var sum = list.Sum();
-
-                if (sum == target)
-                {
-                    return (true, list.Min(), list.Max());
-                }
-                
-                if (sum > target)
-                {
-                    return (false, -1, -1);
-                }
+                Log.InfoLog(ClassId, $"Break: {target}");
+                Result = target;
+                break;
             }
 
-            return (false, -1, -1);
-        }
+            preamble.RemoveAt(0);
+            preamble.Add(target);
+        } while (queue.Count > 0);
 
-        private bool FindMatchInList(List<long> input, long target)
+        _target = Result;
+    }
+
+    protected override void ComputePart2()
+    {
+        var target = _target;
+
+        var list = _data.ToList();
+
+        do
         {
-            var match = false;
+            var (match, x, y) = FindSum(list, target);
 
-            foreach (var number in input)
+            if (match)
             {
-                (match, _, _) = FindMatch(input, target, number);
-
-                if (match) break;
+                Result = x + y;
+                Log.DebugLog(ClassId, $"Match: {x}, {y}, Sum=[{Result}]");
+                break;
             }
 
-            return match;
-        }
+            list.RemoveAt(0);
+        } while (list.Count > 0);
+    }
 
-        private (bool, long, long) FindMatch(List<long> data, long target, long number)
+    private (bool, long, long) FindSum(List<long> input, in long target)
+    {
+        var list = new List<long>();
+
+        foreach (var i in input)
         {
-            var diff = target - number;
+            list.Add(i);
 
-            if (data.Contains(diff))
+            var sum = list.Sum();
+
+            if (sum == target)
             {
-                // Log.DebugLog(ClassId, $"{number}, {diff}, {number + diff}, {number * diff}");
-                return (true, number, diff);
+                return (true, list.Min(), list.Max());
             }
 
-            return (false, 0, 0);
+            if (sum > target)
+            {
+                return (false, -1, -1);
+            }
         }
 
-        [Conditional("LOG")]
-        private void DumpData()
+        return (false, -1, -1);
+    }
+
+    private bool FindMatchInList(List<long> input, long target)
+    {
+        var match = false;
+
+        foreach (var number in input)
         {
-            Log.DebugLog(ClassId);
+            (match, _, _) = FindMatch(input, target, number);
 
-            _data[0].Dump("Item");
-            _data.DumpJson("List");
+            if (match) break;
         }
+
+        return match;
+    }
+
+    private (bool, long, long) FindMatch(List<long> data, long target, long number)
+    {
+        var diff = target - number;
+
+        if (data.Contains(diff))
+        {
+            // Log.DebugLog(ClassId, $"{number}, {diff}, {number + diff}, {number * diff}");
+            return (true, number, diff);
+        }
+
+        return (false, 0, 0);
+    }
+
+    [Conditional("LOG")]
+    private void DumpData()
+    {
+        Log.DebugLog(ClassId);
+
+        _data[0].Dump("Item");
+        _data.DumpJson("List");
     }
 }
 
 #if DUMP
-
 #endif

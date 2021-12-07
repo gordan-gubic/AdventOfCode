@@ -7,9 +7,9 @@ public class Day06 : Day
 {
     private const int YEAR = 2021;
     private const int DAY = 6;
-    private List<List<int>> _source;
-    private List<int> _data;
 
+    private List<string> _source;
+    private List<int> _data;
     private Dictionary<(int, int), long> _cache;
 
     public Day06(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
@@ -23,13 +23,13 @@ public class Day06 : Day
     {
         Parser.Type = ParserFileType.Real;
 
-        _source = Parser.Parse(ConvertInput);
+        _source = Parser.Parse();
     }
 
     /// <inheritdoc />
     protected override void ProcessData()
     {
-        _data = _source[0];
+        _data = _source[0].ToIntSequence();
     }
 
     protected override void ComputePart1()
@@ -47,7 +47,6 @@ public class Day06 : Day
 
         Result = ProcessLanterns(lanterns, 256);
     }
-
 
     private long ProcessLanterns(List<int> lanterns, int days)
     {
@@ -72,8 +71,8 @@ public class Day06 : Day
         var l = value;
 
         var n = (days + (6 - l)) / 7;
-        
-        while(n > 0)
+
+        while (n > 0)
         {
             var rest = days - (n * 7) + (6 - value);
             // $"n: {n} - rest: {rest}".Dump();
@@ -85,11 +84,6 @@ public class Day06 : Day
 
         _cache[(value, days)] = total;
         return total;
-    }
-
-    private List<int> ConvertInput(string input)
-    {
-        return input.Split(',').Select(x => x.ToInt()).ToList();
     }
 
     #region Dump
