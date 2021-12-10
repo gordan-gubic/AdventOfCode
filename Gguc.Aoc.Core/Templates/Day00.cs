@@ -5,8 +5,9 @@ namespace Gguc.Aoc.Core.Templates;
 
 public class Day00 : Day
 {
-    private const int YEAR = 2099;
+    private const int YEAR = 2021;
     private const int DAY = 0;
+
     private List<string> _source;
     private List<string> _data;
 
@@ -19,7 +20,7 @@ public class Day00 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Example;
 
         _source = Parser.Parse(ConvertInput);
     }
