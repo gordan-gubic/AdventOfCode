@@ -14,9 +14,23 @@ public static class ConvertExtensions
         return defaultValue;
     }
 
+    public static int ToInt(this char input, int defaultValue = default)
+    {
+        if (int.TryParse($"{input}", out var result)) return result;
+
+        return defaultValue;
+    }
+
     public static long ToLong(this string input, int defaultValue = default)
     {
         if (long.TryParse(input, out var result)) return result;
+
+        return defaultValue;
+    }
+
+    public static long ToLong(this char input, int defaultValue = default)
+    {
+        if (long.TryParse($"{input}", out var result)) return result;
 
         return defaultValue;
     }

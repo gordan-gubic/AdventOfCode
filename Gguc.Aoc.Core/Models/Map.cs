@@ -27,13 +27,19 @@ public class Map<T>
         Height = lines.Count;
         Values = new T[Width, Height];
 
-        for (var y = 0; y < lines.Count; y++)
+        for (var y = 0; y < Height; y++)
         {
-            for (var x = 0; x < lines[y].Length; x++)
+            for (var x = 0; x < Width; x++)
             {
                 Values[x, y] = convert(lines[y][x]);
             }
         }
+    }
+
+    public T this[int x, int y]
+    {
+        get { return Values[x, y]; }
+        set { Values[x, y] = value; }
     }
 
     public T[,] Values { get; set; }
@@ -46,13 +52,7 @@ public class Map<T>
     {
         var map = new Map<T>(Width, Height);
 
-        for (int y = 0; y < Height; y++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                map.Values[x, y] = Values[x, y];
-            }
-        }
+        ForEach((x, y) => map[x, y] = this[x, y]);
 
         return map;
     }
@@ -61,13 +61,7 @@ public class Map<T>
     {
         var map = new Map<T>(Height, Width);
 
-        for (int y = 0; y < Height; y++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                map.Values[Height - y - 1, x] = Values[x, y];
-            }
-        }
+        ForEach((x, y) => map[Height - y - 1, x] = this[x, y]);
 
         return map;
     }
@@ -76,13 +70,7 @@ public class Map<T>
     {
         var map = new Map<T>(Width, Height);
 
-        for (int y = 0; y < Height; y++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                map.Values[Width - x - 1, y] = Values[x, y];
-            }
-        }
+        ForEach((x, y) => map[Width - x - 1, y] = this[x, y]);
 
         return map;
     }
@@ -91,13 +79,7 @@ public class Map<T>
     {
         var map = new Map<T>(Width, Height);
 
-        for (int y = 0; y < Height; y++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                map.Values[x, Height - y - 1] = Values[x, y];
-            }
-        }
+        ForEach((x, y) => map[x, Height - y - 1] = this[x, y]);
 
         return map;
     }
@@ -106,22 +88,30 @@ public class Map<T>
     {
         if (x < 0 || y < 0 || x >= Width || y >= Height) return default;
 
-        return Values[x, y];
+        return this[x, y];
     }
 
     public int CountValues(T value = default)
     {
         var count = 0;
 
+        ForEach((x, y) =>
+        {
+            if (GetValue(x, y).Equals(value)) count++;
+        });
+
+        return count;
+    }
+
+    public void ForEach(Action<int, int> action)
+    {
         for (var y = 0; y < Height; y++)
         {
             for (var x = 0; x < Width; x++)
             {
-                if (GetValue(x, y).Equals(value)) count++;
+                action(x, y);
             }
         }
-
-        return count;
     }
 
     /// <inheritdoc />
