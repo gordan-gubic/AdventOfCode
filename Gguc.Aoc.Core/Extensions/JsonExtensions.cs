@@ -5,12 +5,12 @@
 /// </summary>
 public static class JsonExtensions
 {
-    private static readonly JsonSerializerSettings DefaultJsonSerializerSettings = new JsonSerializerSettings()
+    private static readonly JsonSerializerSettings DefaultJsonSerializerSettings = new JsonSerializerSettings
     {
         Converters = new List<JsonConverter> { new StringEnumConverter() }
     };
 
-    private static readonly JsonSerializerSettings IndentedJsonSerializerSettings = new JsonSerializerSettings()
+    private static readonly JsonSerializerSettings IndentedJsonSerializerSettings = new JsonSerializerSettings
     {
         Converters = new List<JsonConverter> { new StringEnumConverter() },
         Formatting = Formatting.Indented,
@@ -30,7 +30,7 @@ public static class JsonExtensions
         }
         catch (Exception ex)
         {
-            Trace.TraceWarning($"Error occured during deserialization from json. JSON=[{json}]. Exception=[{ex.Message}]!");
+            Trace.TraceWarning($"Error occurred during deserialization from json. JSON=[{json}]. Exception=[{ex.Message}]!");
             return default;
         }
     }

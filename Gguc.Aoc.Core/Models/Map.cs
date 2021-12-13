@@ -57,6 +57,24 @@ public class Map<T>
         return map;
     }
 
+    public Map<T> Sub(int x1, int y1, int x2, int y2)
+    {
+        var width = x2 - x1 + 1;
+        var height = y2 - y1 + 1;
+
+        var map = new Map<T>(width, height);
+
+        for (var y = y1; y <= y2; y++)
+        {
+            for (var x = x1; x <= x2; x++)
+            {
+                map[x - x1, y - y1] = this[x, y];
+            }
+        }
+
+        return map;
+    }
+
     public Map<T> Rotate()
     {
         var map = new Map<T>(Height, Width);
@@ -123,7 +141,7 @@ public class Map<T>
         {
             for (var x = 0; x < Width; x++)
             {
-                sb.Append($"{Values[x, y]}, ");
+                sb.Append($"{this[x, y]}, ");
             }
             sb.AppendLine();
         }
