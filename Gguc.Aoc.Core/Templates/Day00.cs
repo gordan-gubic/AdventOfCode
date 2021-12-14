@@ -17,7 +17,7 @@ public class Day00 : Day
         Initialize();
     }
 
-    /// <inheritdoc />
+    #region Parse
     protected override void InitParser()
     {
         Parser.Type = ParserFileType.Example;
@@ -25,11 +25,11 @@ public class Day00 : Day
         _source = Parser.Parse(ConvertInput);
     }
 
-    /// <inheritdoc />
     protected override void ProcessData()
     {
         _data = _source;
     }
+    #endregion Parse
 
     protected override void ComputePart1()
     {
