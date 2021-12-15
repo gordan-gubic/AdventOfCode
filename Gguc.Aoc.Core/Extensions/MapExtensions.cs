@@ -52,4 +52,21 @@ public static class MapExtensions
 
         return sb.ToString();
     }
+
+    public static string MapIntToString(this Map<int> map)
+    {
+        var sb = new StringBuilder();
+
+        for (var y = 0; y < map.Height; y++)
+        {
+            for (var x = 0; x < map.Width; x++)
+            {
+                var value = map[x, y];
+                sb.Append(value);
+            }
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
 }

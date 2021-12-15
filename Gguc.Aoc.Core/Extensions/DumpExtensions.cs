@@ -3,6 +3,16 @@
 public static class DumpExtensions
 {
     [Conditional("LOG")]
+    public static void DumpCaller(this object input, [CallerMemberName] string method = null, string title = null, bool newLine = false)
+    {
+        DumpTitle(title);
+
+        var nl = newLine ? Environment.NewLine : "";
+
+        Trace.WriteLine($"{nl}{method}");
+    }
+
+    [Conditional("LOG")]
     public static void Dump(this object input, string title = null, bool newLine = false)
     {
         DumpTitle(title);

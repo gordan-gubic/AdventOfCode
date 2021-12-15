@@ -5,7 +5,7 @@ public class App
     private static readonly string ClassId = nameof(App);
     private static TraceLog _log;
 
-    private static readonly int DayKey = 202114;
+    private static readonly int DayKey = 202117;
 
     public App()
     {

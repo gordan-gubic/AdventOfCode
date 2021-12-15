@@ -24,6 +24,15 @@ public static class RegexExtensions
         return match.Groups[groupNo].Value;
     }
 
+    public static IEnumerable<string> MatchAll(this string input, string pattern)
+    {
+        var match = Regex.Match(input, pattern);
+
+        if (!match.Success) return null;
+
+        return match.Groups.Values.Select(x => x.Value);
+    }
+
     public static string RegexValue(this string groupName, Match match)
     {
         if (!match.Success || !match.Groups[groupName].Success) return null;
