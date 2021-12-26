@@ -1,7 +1,7 @@
 ﻿#define LOGx
 #define STOPWATCH
 
-namespace Gguc.Aoc.Core.Templates;
+namespace Gguc.Aoc.Y2021.Days;
 
 public class Day14 : Day
 {

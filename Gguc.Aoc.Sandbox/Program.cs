@@ -11,5 +11,7 @@ class Program
 
         var log = new TraceLog();
         log.Debug("Hello!");
+
+        BinaryTree.Run();
     }
 }

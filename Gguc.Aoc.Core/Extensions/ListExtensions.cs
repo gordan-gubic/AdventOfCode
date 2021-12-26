@@ -48,4 +48,9 @@ public static class ListExtensions
     {
         dict.Add(input.Item1, input.Item2);
     }
+
+    public static bool IsNullOrEmpty<T>(this IEnumerable<T> list)
+    {
+        return list == null || !list.Any();
+    }
 }

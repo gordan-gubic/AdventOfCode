@@ -154,8 +154,8 @@ public static class DumpExtensions
     {
         if (title.IsNotWhitespace())
         {
-            Trace.WriteLine($"**  {title}");
-            Trace.WriteLine("".PadLeft(80, '*'));
+            Trace.WriteLine("".PadLeft(80, '-'));
+            Trace.WriteLine($"--  {title}");
         }
     }
 }

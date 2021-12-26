@@ -36,6 +36,15 @@ public static class MapExtensions
         return map;
     }
 
+    public static Map<bool> InverseBool(this Map<bool> map1)
+    {
+        var map = new Map<bool>(map1.Width, map1.Height);
+
+        map.ForEach((x, y) => map[x, y] = !map1[x, y]);
+
+        return map;
+    }
+
     public static string MapBoolToString(this Map<bool> map, char truech = '#', char falsech = ' ')
     {
         var sb = new StringBuilder();

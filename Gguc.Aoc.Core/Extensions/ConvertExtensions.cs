@@ -35,12 +35,17 @@ public static class ConvertExtensions
         return defaultValue;
     }
 
-    public static bool ToBool(this string input, int defaultValue = default)
+    public static bool ToBool(this string input)
     {
         return input.IsNotWhitespace() && input != "0";
     }
 
-    public static bool ToBool(this char input, int defaultValue = default)
+    public static bool ToBool(this string input, string trueValue)
+    {
+        return input.IsNotWhitespace() && input == trueValue;
+    }
+
+    public static bool ToBool(this char input)
     {
         return input != '0';
     }

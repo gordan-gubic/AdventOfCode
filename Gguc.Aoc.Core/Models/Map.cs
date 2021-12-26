@@ -2,11 +2,11 @@
 
 public class Map<T>
 {
-    public Map(int size) : this(size, size)
+    public Map(int size, T defaultValue = default) : this(size, size, defaultValue)
     {
     }
 
-    public Map(int width, int height)
+    public Map(int width, int height, T defaultValue = default)
     {
         Width = width;
         Height = height;
@@ -16,7 +16,7 @@ public class Map<T>
         {
             for (int x = 0; x < Width; x++)
             {
-                Values[x, y] = default;
+                Values[x, y] = defaultValue;
             }
         }
     }
@@ -73,6 +73,22 @@ public class Map<T>
         }
 
         return map;
+    }
+
+    public Map<T> Expand(int n = 1, T value = default)
+    {
+        var map = new Map<T>(Width + 2 * n, Height + 2 * n);
+
+        map.ForEach((x, y) => map[x, y] = value);
+
+        this.ForEach((x, y) => map[x + n, y + n] = this[x, y]);
+
+        return map;
+    }
+
+    public Map<T> Reduce(int n = 1)
+    {
+        return this.Sub(n, n, Height - n - 1, Width - n - 1);
     }
 
     public Map<T> Rotate()

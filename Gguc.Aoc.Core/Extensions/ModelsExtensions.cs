@@ -2,8 +2,13 @@
 
 public static class ModelsExtensions
 {
-    public static long ManhattanDistance(this in Point dot)
+    public static long ManhattanDistance(this Point dot)
     {
         return Math.Abs(dot.X) + Math.Abs(dot.Y);
+    }
+
+    public static long ManhattanDistance(this Point3d point1, Point3d point2)
+    {
+        return Math.Abs(point1.X - point2.X) + Math.Abs(point1.Y - point2.Y) + Math.Abs(point1.Z - point2.Z);
     }
 }
