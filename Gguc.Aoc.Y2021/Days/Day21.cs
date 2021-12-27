@@ -3,18 +3,23 @@
 
 namespace Gguc.Aoc.Core.Templates;
 
-public class Day00 : Day
+public class Day21 : Day
 {
     private const int YEAR = 2021;
-    private const int DAY = 0;
+    private const int DAY = 21;
 
     private List<string> _source;
     private List<string> _data;
+    private IDay _part1;
+    private IDay _part2;
 
-    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day21(ILog log, IParser parser, ILifetimeScope scope) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
+
+        _part1 = scope.ResolveKeyed<IDay>(20212101);
+        _part2 = scope.ResolveKeyed<IDay>(20212102);
     }
 
     #region Parse
@@ -33,10 +38,12 @@ public class Day00 : Day
 
     protected override void ComputePart1()
     {
+        Result = _part1.SolutionPart1();
     }
 
     protected override void ComputePart2()
     {
+        Result = _part2.SolutionPart2();
     }
 
     private string ConvertInput(string input)
