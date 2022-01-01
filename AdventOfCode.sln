@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Sandbox", "Gguc.Aoc.Sandbox\Gguc.Aoc.Sandbox.csproj", "{7298B522-ADA3-414F-A1F1-A1F4EE206CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Sandbox", "Source\Gguc.Aoc.Sandbox\Gguc.Aoc.Sandbox.csproj", "{7298B522-ADA3-414F-A1F1-A1F4EE206CD8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Core", "Gguc.Aoc.Core\Gguc.Aoc.Core.csproj", "{1F94FC6E-3F85-460D-8313-D893F8FFC098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Core", "Source\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj", "{1F94FC6E-3F85-460D-8313-D893F8FFC098}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2019", "Gguc.Aoc.Y2019\Gguc.Aoc.Y2019.csproj", "{1F4D39DE-462F-4C7C-8129-0EDAAFE46158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.ConsoleApp", "Source\Gguc.Aoc.ConsoleApp\Gguc.Aoc.ConsoleApp.csproj", "{4CA6E035-5FC2-4B3D-AFE6-CD9FBE36CB03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.ConsoleApp", "Gguc.Aoc.ConsoleApp\Gguc.Aoc.ConsoleApp.csproj", "{4CA6E035-5FC2-4B3D-AFE6-CD9FBE36CB03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Hub", "Source\Gguc.Aoc.Hub\Gguc.Aoc.Hub.csproj", "{FD8D9D5E-AEA9-41C7-AA54-06D45B31AF60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Hub", "Gguc.Aoc.Hub\Gguc.Aoc.Hub.csproj", "{FD8D9D5E-AEA9-41C7-AA54-06D45B31AF60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Resources", "Source\Gguc.Aoc.Resources\Gguc.Aoc.Resources.csproj", "{B8DF62A1-7688-4B88-998E-0FDA8CD1D86A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Resources", "Gguc.Aoc.Resources\Gguc.Aoc.Resources.csproj", "{B8DF62A1-7688-4B88-998E-0FDA8CD1D86A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2018", "Source\Gguc.Aoc.Y2018\Gguc.Aoc.Y2018.csproj", "{0E3ACFFD-B985-4897-972C-67DFD217D42B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2020", "Gguc.Aoc.Y2020\Gguc.Aoc.Y2020.csproj", "{21B787BF-8999-45C6-A600-45091FB83ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2019", "Source\Gguc.Aoc.Y2019\Gguc.Aoc.Y2019.csproj", "{1F4D39DE-462F-4C7C-8129-0EDAAFE46158}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2020", "Source\Gguc.Aoc.Y2020\Gguc.Aoc.Y2020.csproj", "{21B787BF-8999-45C6-A600-45091FB83ABB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2021", "Source\Gguc.Aoc.Y2021\Gguc.Aoc.Y2021.csproj", "{437B1A9F-2C63-4700-A41C-2248B0C78CA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{3B799218-9B46-480F-B65F-5A2845967317}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,10 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{3B
 		readme.md = readme.md
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2021", "Gguc.Aoc.Y2021\Gguc.Aoc.Y2021.csproj", "{437B1A9F-2C63-4700-A41C-2248B0C78CA4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2018", "Gguc.Aoc.Y2018\Gguc.Aoc.Y2018.csproj", "{0E3ACFFD-B985-4897-972C-67DFD217D42B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

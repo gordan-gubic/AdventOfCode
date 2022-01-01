@@ -2,7 +2,8 @@
 
 public static class Paths
 {
-    public static readonly string InputSourcePath = @"..\..\..\Gguc.Aoc.Resources\";
+    //public static readonly string InputSourcePath = @"..\..\..\Gguc.Aoc.Resources\";
+    public static readonly string InputSourcePath = @".";
 
     public static readonly string InputSourceTest = Path.Combine(InputSourcePath, "Test", "test.txt");
 
