@@ -62,7 +62,7 @@ public static class MapExtensions
         return sb.ToString();
     }
 
-    public static string MapIntToString(this Map<int> map)
+    public static string MapValueToString<T>(this Map<T> map)
     {
         var sb = new StringBuilder();
 

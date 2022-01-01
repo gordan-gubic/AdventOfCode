@@ -47,7 +47,7 @@ public class Day15 : Day
 
         Result = results[results.Width - 1, results.Height - 1];
 
-        // results.Dump("r-1", true);
+        DumpMap(map);
     }
 
     protected override void ComputePart2()
@@ -78,9 +78,7 @@ public class Day15 : Day
 
         Result = results[results.Width - 1, results.Height - 1];
 
-        // map.Dump("map-2", true);
-        // map.MapIntToString().Dump("map-2", true);
-        // results.Dump("r-1", true);
+        DumpMap(map);
     }
 
     private void Pathfind(Map<int> map, Map<long> results)
@@ -130,6 +128,14 @@ public class Day15 : Day
         Debug();
 
         // _map.Dump("Map");
+    }
+
+    [Conditional("LOG")]
+    private void DumpMap<T>(Map<T> map)
+    {
+        if (!Log.EnableDebug) return;
+
+        map.MapValueToString().Dump("Map", true);
     }
     #endregion Dump
 }
