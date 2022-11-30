@@ -3,15 +3,15 @@
 
 namespace Gguc.Aoc.Core.Templates;
 
-public class Day00 : Day
+public class Day04 : Day
 {
     private const int YEAR = 2018;
-    private const int DAY = 0;
+    private const int DAY = 04;
 
     private List<string> _source;
     private List<string> _data;
 
-    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day04(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();

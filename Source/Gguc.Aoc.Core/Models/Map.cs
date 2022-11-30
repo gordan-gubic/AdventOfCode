@@ -137,6 +137,18 @@ public class Map<T>
         return count;
     }
 
+    public int CountValues(Func<T, bool> func)
+    {
+        var count = 0;
+
+        ForEach((x, y) =>
+        {
+            if (func(GetValue(x, y))) count++;
+        });
+
+        return count;
+    }
+
     public void ForEach(Action<int, int> action)
     {
         for (var y = 0; y < Height; y++)

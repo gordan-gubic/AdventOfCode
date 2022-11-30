@@ -7,14 +7,13 @@
     <BuildDir>$(RootDir)\Build</BuildDir>
     <BaseIntermediateOutputPath>$(Stage)\obj\$(MSBuildProjectFile)_$(Configuration)_$(Platform)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <OutputPath>$(Stage)\$(Configuration)\$(MSBuildProjectFile)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-	<PlatformTarget>x64</PlatformTarget>
+    <TargetFramework>net7.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
     <Nullable>disable</Nullable>
-    <OutputPath>$(Stage)\$(Configuration)\$(MSBuildProjectFile)</OutputPath>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
