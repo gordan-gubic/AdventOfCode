@@ -9,6 +9,7 @@ public class Day01 : Day
     private const int DAY = 1;
 
     private List<int> _data;
+    private Dictionary<int, long> _elves = new ();
 
     public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
@@ -19,7 +20,7 @@ public class Day01 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Real;
 
         _data = Parser.Parse(Converters.ToInt);
     }
@@ -34,24 +35,38 @@ public class Day01 : Day
     {
         var result = 0L;
 
-        foreach (var value in _data)
-        {
-            result += value;
-        }
+        var max = _elves.Values.Max(x => x);
 
-        Result = result;
+        Result = max;
     }
 
     protected override void ComputePart2()
     {
         var result = 0L;
 
+        var tops = _elves.Values.OrderDescending().Take(3).Sum();
+
+        Result = tops;
+    }
+
+    protected override void ProcessData()
+    {
+        base.ProcessData();
+    
+        var index = 0;
+        _elves[index] = 0;
+
         foreach (var value in _data)
         {
-            result += value;
+            if (value == 0)
+            {
+                _elves[++index] = 0;
+            }
+
+            _elves[index] += value;
         }
 
-        Result = result;
+        _elves.DumpCollection();
     }
 
     private int Convert(string input)
@@ -65,8 +80,8 @@ public class Day01 : Day
         if (!Log.EnableDebug) return;
 
         Debug();
-
-        //_data.DumpCollection();
+        
+        _data.DumpCollection();
     }
 }
 
