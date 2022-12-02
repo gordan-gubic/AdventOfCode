@@ -9,7 +9,7 @@ public class Day01 : Day
     private const int DAY = 1;
 
     private List<int> _data;
-    private Dictionary<int, long> _elves = new ();
+    private readonly Dictionary<int, long> _elves = new ();
 
     public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
@@ -33,20 +33,12 @@ public class Day01 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0L;
-
-        var max = _elves.Values.Max(x => x);
-
-        Result = max;
+        Result = _elves.Values.Max();
     }
 
     protected override void ComputePart2()
     {
-        var result = 0L;
-
-        var tops = _elves.Values.OrderDescending().Take(3).Sum();
-
-        Result = tops;
+        Result = _elves.Values.OrderDescending().Take(3).Sum();
     }
 
     protected override void ProcessData()
@@ -67,11 +59,6 @@ public class Day01 : Day
         }
 
         _elves.DumpCollection();
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]
