@@ -19,6 +19,7 @@ public class Day00 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
+        Parser.Type = ParserFileType.Real;
         Parser.Type = ParserFileType.Test;
 
         _data = Parser.Parse();

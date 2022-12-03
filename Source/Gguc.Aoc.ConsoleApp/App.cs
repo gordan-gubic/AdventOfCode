@@ -2,10 +2,11 @@
 
 public class App
 {
-    private static readonly string ClassId = nameof(App);
+    private const string ClassId = nameof(App);
+    
+    private const int DayKey = 202203;
+    
     private static TraceLog _log;
-
-    private static readonly int DayKey = 202202;
 
     public App()
     {
