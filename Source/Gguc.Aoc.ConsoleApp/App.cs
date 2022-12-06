@@ -4,7 +4,7 @@ public class App
 {
     private const string ClassId = nameof(App);
     
-    private const int DayKey = 202203;
+    private const int DayKey = 202205;
     
     private static TraceLog _log;
 
@@ -71,6 +71,9 @@ public class App
 
     private void ExecutePart1(IDay day)
     {
+        _log.Info("");
+        _log.InfoLog(ClassId, "Part 01");
+
         var result = day.SolutionPart1();
 
         _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Result: [{result}]");
@@ -79,6 +82,9 @@ public class App
 
     private void ExecutePart2(IDay day)
     {
+        _log.Info("");
+        _log.InfoLog(ClassId, "Part 02");
+
         var result = day.SolutionPart2();
 
         _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Result: [{result}]");
