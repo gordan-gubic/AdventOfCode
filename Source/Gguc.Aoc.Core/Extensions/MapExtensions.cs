@@ -78,4 +78,52 @@ public static class MapExtensions
 
         return sb.ToString();
     }
+
+    public static int MaxValue(this Map<int> map)
+    {
+        var max = 0;
+
+        map.ForEach((x, y) =>
+        {
+            if (map[x, y] > max) max = map[x, y];
+        });
+
+        return max;
+    }
+
+    public static int MinValue(this Map<int> map)
+    {
+        var min = int.MaxValue;
+
+        map.ForEach((x, y) =>
+        {
+            if (map[x, y] < min) min = map[x, y];
+        });
+
+        return min;
+    }
+
+    public static long MaxValue(this Map<long> map)
+    {
+        var max = 0L;
+
+        map.ForEach((x, y) =>
+        {
+            if (map[x, y] > max) max = map[x, y];
+        });
+
+        return max;
+    }
+
+    public static long MinValue(this Map<long> map)
+    {
+        var min = long.MaxValue;
+
+        map.ForEach((x, y) =>
+        {
+            if (map[x, y] < min) min = map[x, y];
+        });
+
+        return min;
+    }
 }

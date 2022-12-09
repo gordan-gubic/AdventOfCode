@@ -131,8 +131,6 @@ public class Day07 : Day
         Debug();
 
         // _data.DumpCollection();
-        Log.Info("Your puzzle answer was 1517599.");
-        Log.Info("Your puzzle answer was 2481982.");
     }
 }
 
