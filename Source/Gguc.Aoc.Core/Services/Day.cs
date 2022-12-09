@@ -29,6 +29,10 @@ public abstract class Day : IDay
 
     public int Id { get; }
 
+    public string Expected1 { get; set; }
+
+    public string Expected2 { get; set; }
+
     protected ILog Log { get; }
 
     protected IParser Parser { get; }

@@ -1,4 +1,4 @@
-﻿#define LOGx
+﻿#define LOG
 #define STOPWATCH
 
 namespace Gguc.Aoc.Y2022.Days;
@@ -14,6 +14,9 @@ public class Day00 : Day
     {
         EnableDebug();
         Initialize();
+
+        Expected1 = "";
+        Expected2 = "";
     }
 
     /// <inheritdoc />
@@ -64,7 +67,7 @@ public class Day00 : Day
 
         Debug();
 
-        // _data.DumpCollection();
+        _data.DumpCollection();
     }
 }
 
