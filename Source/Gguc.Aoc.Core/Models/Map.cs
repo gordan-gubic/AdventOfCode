@@ -57,6 +57,11 @@ public class Map<T>
         return map;
     }
 
+    public void Reset(T value = default)
+    {
+        ForEach((x, y) => Values[x, y] = value);
+    }
+
     public Map<T> Sub(int x1, int y1, int x2, int y2)
     {
         var width = x2 - x1 + 1;
@@ -120,10 +125,12 @@ public class Map<T>
 
     public T GetValue(in int x, in int y)
     {
-        if (x < 0 || y < 0 || x >= Width || y >= Height) return default;
+        if (!Contains(x, y)) return default;
 
         return this[x, y];
     }
+
+    public bool Contains(int x, int y) => !(x < 0 || y < 0 || x >= Width || y >= Height);
 
     public int CountValues(T value = default)
     {

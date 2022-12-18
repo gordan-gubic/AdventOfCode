@@ -15,13 +15,16 @@ public class Day04 : Day
     {
         EnableDebug();
         Initialize();
+
+        Expected1 = "588";
+        Expected2 = "911";
     }
 
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Real;
         Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Real;
 
         _data = Parser.Parse();
     }

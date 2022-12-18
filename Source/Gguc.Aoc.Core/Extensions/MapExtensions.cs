@@ -36,6 +36,22 @@ public static class MapExtensions
         return map;
     }
 
+    public static bool Overlaps(this Map<bool> map1, Map<bool> map2)
+    {
+        for (var y = 0; y < map1.Height; y++)
+        {
+            for (var x = 0; x < map1.Width; x++)
+            {
+                if (map1[x, y] && map2[x, y])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static Map<bool> InverseBool(this Map<bool> map1)
     {
         var map = new Map<bool>(map1.Width, map1.Height);

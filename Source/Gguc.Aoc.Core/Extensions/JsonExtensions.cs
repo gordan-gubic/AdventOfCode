@@ -48,7 +48,7 @@ public static class JsonExtensions
         }
         catch (Exception ex)
         {
-            Trace.TraceWarning($"Error occured during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
+            Trace.TraceWarning($"Error occurred during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
             return default;
         }
     }
@@ -66,7 +66,7 @@ public static class JsonExtensions
         }
         catch (Exception ex)
         {
-            Trace.TraceWarning($"Error occured during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
+            Trace.TraceWarning($"Error occurred during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
             return default;
         }
     }

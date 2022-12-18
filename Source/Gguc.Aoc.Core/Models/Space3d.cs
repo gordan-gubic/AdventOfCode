@@ -28,6 +28,20 @@ public class Space3d<T>
     public int Length1 { get; }
     public int Length2 { get; }
 
+    public void Reset(T value = default)
+    {
+        for (var z = 0; z < Length2; z++)
+        {
+            for (var y = 0; y < Length1; y++)
+            {
+                for (var x = 0; x < Length0; x++)
+                {
+                    Values[x, y, z] = default;
+                }
+            }
+        }
+    }
+
     public Space3d<T> Copy()
     {
         var space = new Space3d<T>(Length0, Length1, Length2);
@@ -88,6 +102,8 @@ public class Space3d<T>
 
         return count;
     }
+
+    public bool Contains(int x, int y, int z) => !(x < 0 || y < 0 || z < 0 || x >= Length0 || y >= Length1 || z >= Length2);
 
     /// <inheritdoc />
     public override string ToString()

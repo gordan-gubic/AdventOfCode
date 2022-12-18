@@ -53,6 +53,9 @@ public class Day00 : Day
         base.ProcessData();
 
         // Gromit do something!
+        foreach (var line in _data)
+        {
+        }
     }
 
     private int Convert(string input)
