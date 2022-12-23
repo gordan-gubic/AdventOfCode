@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="Services\Obsolete\IntcodeEngine-07.cs" />
     <None Include="Services\Obsolete\IntcodeEngine02.cs" />
     <None Include="Services\Obsolete\IntcodeEngine05.cs" />

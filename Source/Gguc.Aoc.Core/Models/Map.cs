@@ -130,6 +130,30 @@ public class Map<T>
         return this[x, y];
     }
 
+    public List<(int, int, T)> GetRow(int y)
+    {
+        var list = new List<(int, int, T)>();
+
+        for (var x = 0; x <= Width; x++)
+        {
+            list.Add((x, y, GetValue(x, y)));
+        }
+
+        return list;
+    }
+
+    public List<(int, int, T)> GetColumn(int x)
+    {
+        var list = new List<(int, int, T)>();
+
+        for (var y = 0; y <= Height; y++)
+        {
+            list.Add((x, y, GetValue(x, y)));
+        }
+
+        return list;
+    }
+
     public bool Contains(int x, int y) => !(x < 0 || y < 0 || x >= Width || y >= Height);
 
     public int CountValues(T value = default)
@@ -165,6 +189,19 @@ public class Map<T>
                 action(x, y);
             }
         }
+    }
+
+    public (bool, int, int) Find(T value)
+    {
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                if (GetValue(x, y).Equals(value)) return (true, x, y);
+            }
+        }
+
+        return (false, -1, -1);
     }
 
     /// <inheritdoc />

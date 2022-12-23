@@ -29,6 +29,8 @@ public abstract class Day : IDay
 
     public int Id { get; }
 
+    public int CurrentPart { get; set; }
+
     public string Expected1 { get; set; }
 
     public string Expected2 { get; set; }
@@ -47,7 +49,8 @@ public abstract class Day : IDay
     /// <inheritdoc />
     public long SolutionPart1()
     {
-        Log.DebugLog(ClassId);
+        CurrentPart = 1;
+        Log.DebugLog(ClassId, $"Current Part={CurrentPart}");
 
         Reset();
 
@@ -59,7 +62,8 @@ public abstract class Day : IDay
     /// <inheritdoc />
     public long SolutionPart2()
     {
-        Log.DebugLog(ClassId);
+        CurrentPart = 2;
+        Log.DebugLog(ClassId, $"Current Part={CurrentPart}");
 
         Reset();
 

@@ -1,6 +1,6 @@
 ﻿namespace Gguc.Aoc.Core.Models;
 
-public struct Point
+public readonly struct Point
 {
     public Point(int x, int y)
     {

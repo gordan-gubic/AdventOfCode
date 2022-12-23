@@ -8,6 +8,7 @@
     <BaseIntermediateOutputPath>$(Stage)\obj\$(MSBuildProjectFile)_$(Configuration)_$(Platform)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
     <OutputPath>$(Stage)\$(Configuration)\$(MSBuildProjectFile)</OutputPath>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
