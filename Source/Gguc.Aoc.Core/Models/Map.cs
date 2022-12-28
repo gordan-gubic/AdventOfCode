@@ -2,10 +2,6 @@
 
 public class Map<T>
 {
-    public Map(int size, T defaultValue = default) : this(size, size, defaultValue)
-    {
-    }
-
     public Map(int width, int height, T defaultValue = default)
     {
         Width = width;

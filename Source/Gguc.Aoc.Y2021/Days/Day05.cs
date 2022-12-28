@@ -60,7 +60,7 @@ public class Day05 : Day
     {
         Result = 0;
 
-        _map = new Map<int>(_size + 1);
+        _map = new Map<int>(_size + 1, _size + 1);
 
         DrawLines(false);
 
@@ -73,7 +73,7 @@ public class Day05 : Day
     {
         Result = 0;
 
-        _map = new Map<int>(_size + 1);
+        _map = new Map<int>(_size + 1, _size + 1);
 
         DrawLines();
 

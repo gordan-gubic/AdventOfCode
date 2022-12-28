@@ -27,7 +27,7 @@ public class BingoBoard
 
     private void ProcessData()
     {
-        _board = new Map<int>(Size);
+        _board = new Map<int>(Size, Size);
         _hits = new List<int>();
         _controlRows = new List<int>();
         _controlCols = new List<int>();

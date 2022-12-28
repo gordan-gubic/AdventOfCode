@@ -1,6 +1,6 @@
 ﻿namespace Gguc.Aoc.Core.Extensions;
 
-public static class IntExtensions
+public static class IntegerExtensions
 {
     public static int Ceiling(this int input, int divisor)
     {

@@ -5,44 +5,62 @@ namespace Gguc.Aoc.Core.Templates;
 
 public class Day00 : Day
 {
-    private const int YEAR = 2018;
+    private const int YEAR = 2022;
     private const int DAY = 0;
 
-    private List<string> _source;
     private List<string> _data;
 
     public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
+
+        Expected1 = "";
+        Expected2 = "";
     }
 
-    #region Parse
+    /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Example;
+        Parser.Type = ParserFileType.Real;
+        Parser.Type = ParserFileType.Test;
 
-        _source = Parser.Parse();
+        _data = Parser.Parse();
     }
 
-    protected override void ProcessData()
+    /// <inheritdoc />
+    public override void DumpInput()
     {
-        _data = _source;
+        DumpData();
     }
-    #endregion Parse
 
     protected override void ComputePart1()
     {
+        var result = 0L;
+
+        Result = result;
     }
 
     protected override void ComputePart2()
     {
+        var result = 0L;
+
+        Result = result;
     }
 
-    #region Dump
-    public override void DumpInput()
+    protected override void ProcessData()
     {
-        DumpData();
+        base.ProcessData();
+
+        // Gromit do something!
+        foreach (var line in _data)
+        {
+        }
+    }
+
+    private int Convert(string input)
+    {
+        return input.ToInt();
     }
 
     [Conditional("LOG")]
@@ -52,10 +70,8 @@ public class Day00 : Day
 
         Debug();
 
-        _data[0].Dump("Item");
-        _data.DumpCollection("List");
+        _data.DumpCollection();
     }
-    #endregion Dump
 }
 
 #if DROP
