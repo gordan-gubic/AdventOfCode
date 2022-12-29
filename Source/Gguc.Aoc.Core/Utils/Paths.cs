@@ -11,12 +11,12 @@ public static class Paths
     {
         var yearpath = $"y{year:0000}.zip";
 
-        return Path.Combine(InputSourcePath, $"Y{year}", yearpath);
+        return Path.Combine(InputSourcePath, "Years", yearpath);
     }
 
     public static string DayFilePath(int year, int day, bool example = false)
     {
-        return Path.Combine(InputSourcePath, $"Y{year}", DayFileEntry(day, example));
+        return Path.Combine(InputSourcePath, "Years", DayFileEntry(day, example));
     }
 
     public static string DayFileEntry(int day, bool example = false)

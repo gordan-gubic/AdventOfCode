@@ -168,19 +168,19 @@ public class Day04 : Day
     private bool ValidateHairColor(string value)
     {
         var pattern = @"^#[0-9a-f]{6}$";
-        return value.MatchRegex(pattern);
+        return value.IsRegexMatch(pattern);
     }
 
     private bool ValidateEyeColor(string value)
     {
         var pattern = @"^(amb|blu|brn|gry|grn|hzl|oth)$";
-        return value.MatchRegex(pattern);
+        return value.IsRegexMatch(pattern);
     }
 
     private bool ValidatePassportId(string value)
     {
         var pattern = @"^\d{9}$";
-        return value.MatchRegex(pattern);
+        return value.IsRegexMatch(pattern);
     }
 }
 

@@ -16,6 +16,9 @@ public class Day03 : Day
     {
         EnableDebug();
         Initialize();
+
+        Expected1 = "";
+        Expected2 = "";
     }
 
     #region Parse

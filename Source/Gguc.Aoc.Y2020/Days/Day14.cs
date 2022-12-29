@@ -183,7 +183,7 @@ public class Day14 : Day
     {
         var parts = input.Split(new[] { ' ', '=' }, StringSplitOptions.RemoveEmptyEntries);
 
-        var key = parts[0].MatchGroup(@"mem\[(\d+)\]").ToInt(-1);
+        var key = parts[0].RegexValue(@"mem\[(\d+)\]").ToInt(-1);
 
         _data.Add((key, parts[1]));
     }

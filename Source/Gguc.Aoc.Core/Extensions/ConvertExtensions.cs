@@ -49,4 +49,11 @@ public static class ConvertExtensions
     {
         return input != '0';
     }
+
+    public static DateTime ToDateTime(this string input, string format = "yyyy-MM-dd HH:mm:ss", DateTime dt = new ())
+    {
+        var isok = DateTime.TryParseExact(input, format, CultureInfo.InvariantCulture, DateTimeStyles.None,  out var datetime);
+
+        return isok ? datetime : dt;
+    }
 }

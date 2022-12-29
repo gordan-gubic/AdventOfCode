@@ -481,7 +481,7 @@ public class Day20 : Day
 
             if (index == 1)
             {
-                tileIndex = line.MatchGroup(@"Tile (\d+):").ToInt();
+                tileIndex = line.RegexValue(@"Tile (\d+):").ToInt();
                 continue;
             }
 

@@ -3,15 +3,14 @@
 
 namespace Gguc.Aoc.Y2018.Days;
 
-public class Day02 : Day
+public class Day00 : Day
 {
     private const int YEAR = 2018;
-    private const int DAY = 2;
+    private const int DAY = 0;
 
-    private List<string> _source;
     private List<string> _data;
 
-    public Day02(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
@@ -20,43 +19,54 @@ public class Day02 : Day
         Expected2 = "";
     }
 
+    #region Parse
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Example;
+        Parser.Type = ParserFileType.Real;
+        Parser.Type = ParserFileType.Test;
 
-        _source = Parser.Parse();
+        _data = Parser.Parse();
     }
 
-    /// <inheritdoc />
     protected override void ProcessData()
     {
-        _data = _source;
+        // Gromit do something!
+        foreach (var line in _data)
+        {
+        }
     }
 
-    /// <inheritdoc />
-    public override void DumpInput()
+    private int Convert(string input)
     {
-        DumpData();
+        return input.ToInt();
     }
+    #endregion
 
+    #region Head
     protected override void ComputePart1()
     {
-        var result = 0;
+        var result = 0L;
 
         Result = result;
     }
 
     protected override void ComputePart2()
     {
-        var result = 0;
+        var result = 0L;
 
         Result = result;
     }
+    #endregion
 
-    private int Convert(string input)
+    #region Body
+    #endregion
+
+    #region Dump
+    /// <inheritdoc />
+    public override void DumpInput()
     {
-        return input.ToInt();
+        DumpData();
     }
 
     [Conditional("LOG")]
@@ -68,7 +78,7 @@ public class Day02 : Day
 
         _data.DumpCollection();
     }
-
+    #endregion
 }
 
 #if DUMP
