@@ -20,7 +20,7 @@ public class Day04 : Day
         Initialize();
 
         Expected1 = "35184";
-        Expected2 = "";
+        Expected2 = "37886";
     }
 
     protected override void InitParser()

@@ -4,7 +4,7 @@ public class App
 {
     private const string ClassId = nameof(App);
     
-    private const int DayKey = 201804;
+    private const int DayKey = 201805;
     
     private static TraceLog _log;
 

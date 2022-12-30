@@ -19,8 +19,6 @@ public class Day00 : Day
         Expected2 = "";
     }
 
-    #region Parse
-    /// <inheritdoc />
     protected override void InitParser()
     {
         Parser.Type = ParserFileType.Real;
@@ -28,6 +26,7 @@ public class Day00 : Day
 
         _data = Parser.Parse();
     }
+    #region Parse
 
     protected override void ProcessData()
     {
