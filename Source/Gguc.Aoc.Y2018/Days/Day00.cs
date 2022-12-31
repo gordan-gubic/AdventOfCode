@@ -26,8 +26,8 @@ public class Day00 : Day
 
         _data = Parser.Parse();
     }
-    #region Parse
 
+    #region Parse
     protected override void ProcessData()
     {
         // Gromit do something!

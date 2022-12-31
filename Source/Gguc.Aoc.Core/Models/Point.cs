@@ -12,7 +12,7 @@ public readonly struct Point
 
     public int Y { get; }
 
-    public override string ToString() => $"Point: {X}, {Y}";
+    public override string ToString() => $"({X}, {Y})";
 
     /// <inheritdoc />
     public override bool Equals(object obj) => base.Equals(obj);
