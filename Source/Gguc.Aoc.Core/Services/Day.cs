@@ -50,7 +50,7 @@ public abstract class Day : IDay
     public long SolutionPart1()
     {
         CurrentPart = 1;
-        Log.DebugLog(ClassId, $"Current Part={CurrentPart}");
+        Log.InfoLog(ClassId, $"Current Part={CurrentPart}");
 
         Reset();
 
@@ -63,7 +63,7 @@ public abstract class Day : IDay
     public long SolutionPart2()
     {
         CurrentPart = 2;
-        Log.DebugLog(ClassId, $"Current Part={CurrentPart}");
+        Log.InfoLog(ClassId, $"Current Part={CurrentPart}");
 
         Reset();
 

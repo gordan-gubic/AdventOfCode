@@ -7,6 +7,11 @@ public static class RegexExtensions
         return Regex.IsMatch(input, pattern);
     }
 
+    public static Match RegexMatch(this string input, string pattern)
+    {
+        return Regex.Match(input, pattern);
+    }
+
     /// <summary>
     /// Match regex and return value of defined group.
     /// Default group number is 1, as group 0 is always full pattern
@@ -47,6 +52,13 @@ public static class RegexExtensions
         if (!match.Success || !match.Groups[groupName].Success) return null;
 
         return match.Groups[groupName].Value;
+    }
+
+    public static string GroupValue(this Match match, int groupNo = 1)
+    {
+        if (!match.Success || !match.Groups[groupNo].Success) return null;
+
+        return match.Groups[groupNo].Value;
     }
 
     public static string GroupValue(this Match match, string groupName)
