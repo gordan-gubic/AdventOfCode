@@ -8,9 +8,9 @@ public class Map<T>
         Height = height;
         Values = new T[Width, Height];
 
-        for (int y = 0; y < Height; y++)
+        for (var y = 0; y < Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (var x = 0; x < Width; x++)
             {
                 Values[x, y] = defaultValue;
             }
