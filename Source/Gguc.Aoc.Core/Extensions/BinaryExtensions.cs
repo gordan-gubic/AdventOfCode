@@ -37,4 +37,14 @@ public static class BinaryExtensions
     {
         return input == '0' ? '1' : '0';
     }
+
+    public static List<bool> ToBinaryList(this string input, char trueValue = '1')
+    {
+        var array = input.ToBitArray(trueValue);
+
+        var list = new List<bool>();
+        foreach (var item in array) list.Add((bool)item);
+
+        return list;
+    }
 }
