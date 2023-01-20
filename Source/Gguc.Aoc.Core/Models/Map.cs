@@ -187,6 +187,17 @@ public class Map<T>
         }
     }
 
+    public void ForEach(Action<int, int, T> action)
+    {
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                action(x, y, this[x, y]);
+            }
+        }
+    }
+
     public (bool, int, int) Find(T value)
     {
         for (var y = 0; y < Height; y++)
