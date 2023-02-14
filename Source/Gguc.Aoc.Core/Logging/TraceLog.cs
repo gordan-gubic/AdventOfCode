@@ -17,7 +17,7 @@ public class TraceLog : ILog
         System.Diagnostics.Trace.Listeners.Add(new NLogTraceListener());
         var entry = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
         var classId = entry.GetName().Name;
-        this.Info("".PadLeft(120, '_'));
+        this.Info("\n".PadRight(120, '_'));
         this.InfoLog(classId, $"Version: [{entry.GetName().Version}]");
         this.InfoLog(classId, $"Location: [{entry.Location}]");
 #if DEBUG
