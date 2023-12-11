@@ -24,7 +24,11 @@ public interface IParser
 
     Map<bool> ParseMapBool(char mapChar = Parser.DefaultMapCharacter);
 
+    Map<int> ParseMapInt();
+
     Map<int> ParseMapInt(Dictionary<char, int> mapper);
+
+    Map<char> ParseMapChar();
 
     void Log(int line = 0);
 }

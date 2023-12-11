@@ -8,6 +8,7 @@
     <ProjectReference Include="..\Gguc.Aoc.Y2020\Gguc.Aoc.Y2020.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Y2021\Gguc.Aoc.Y2021.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Y2022\Gguc.Aoc.Y2022.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2023\Gguc.Aoc.Y2023.csproj" />
   </ItemGroup>
 
 </Project>

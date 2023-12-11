@@ -22,6 +22,12 @@ public class Space3d<T>
         }
     }
 
+    public T this[int x, int y, int z]
+    {
+        get => Values[x, y, z];
+        set => Values[x, y, z] = value;
+    }
+
     public T[,,] Values { get; set; }
 
     public int Length0 { get; }

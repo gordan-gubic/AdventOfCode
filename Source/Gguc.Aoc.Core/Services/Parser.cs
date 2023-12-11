@@ -115,6 +115,25 @@ public class Parser : IParser
         return map;
     }
 
+    public Map<int> ParseMapInt()
+    {
+        if (!ValidateFile()) return default;
+
+        _lines = _file.ReadFile().ToList();
+
+        var map = new Map<int>(_lines[0].Length, _lines.Count);
+
+        for (var y = 0; y < _lines.Count; y++)
+        {
+            for (var x = 0; x < _lines[y].Length; x++)
+            {
+                map.Values[x, y] = _lines[y][x].ToInt();
+            }
+        }
+
+        return map;
+    }
+
     public Map<int> ParseMapInt(Dictionary<char, int> mapper)
     {
         if (!ValidateFile()) return default;
@@ -128,6 +147,25 @@ public class Parser : IParser
             for (var x = 0; x < _lines[y].Length; x++)
             {
                 map.Values[x, y] = mapper[_lines[y][x]];
+            }
+        }
+
+        return map;
+    }
+
+    public Map<char> ParseMapChar()
+    {
+        if (!ValidateFile()) return default;
+
+        _lines = _file.ReadFile().ToList();
+
+        var map = new Map<char>(_lines[0].Length, _lines.Count);
+
+        for (var y = 0; y < _lines.Count; y++)
+        {
+            for (var x = 0; x < _lines[y].Length; x++)
+            {
+                map.Values[x, y] = _lines[y][x];
             }
         }
 

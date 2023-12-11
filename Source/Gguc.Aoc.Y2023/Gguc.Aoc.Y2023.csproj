@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Compile Remove="Days\Day18_01.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="DaysBackup\Day18_01.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
+  </ItemGroup>
+
+</Project>

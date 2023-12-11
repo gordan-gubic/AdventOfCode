@@ -1,6 +1,6 @@
 ﻿namespace Gguc.Aoc.Core.Models;
 
-public record struct Point3d
+public readonly record struct Point3d
 {
     public Point3d(int x, int y, int z)
     {
@@ -9,11 +9,11 @@ public record struct Point3d
         Z = z;
     }
 
-    public int X { get; private set; }
+    public int X { get; init; }
 
-    public int Y { get; private set; }
+    public int Y { get; init; }
 
-    public int Z { get; private set; }
+    public int Z { get; init; }
 
     public override string ToString() => $"({X},{Y},{Z})";
 

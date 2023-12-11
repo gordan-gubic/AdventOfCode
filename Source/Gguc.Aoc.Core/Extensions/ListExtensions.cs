@@ -53,4 +53,9 @@ public static class ListExtensions
     {
         return list == null || !list.Any();
     }
+
+    public static void Swap<T>(this IList<T> list, int index1, int index2)
+    {
+        (list[index1], list[index2]) = (list[index2], list[index1]);
+    }
 }

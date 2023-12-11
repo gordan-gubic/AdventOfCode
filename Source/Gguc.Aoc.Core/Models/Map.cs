@@ -34,8 +34,8 @@ public class Map<T>
 
     public T this[int x, int y]
     {
-        get { return Values[x, y]; }
-        set { Values[x, y] = value; }
+        get => Values[x, y];
+        set => Values[x, y] = value;
     }
 
     public T[,] Values { get; set; }
@@ -150,6 +150,30 @@ public class Map<T>
         return list;
     }
 
+    public List<T> GetRowValues(int y)
+    {
+        var list = new List<T>();
+
+        for (var x = 0; x <= Width; x++)
+        {
+            list.Add(GetValue(x, y));
+        }
+
+        return list;
+    }
+
+    public List<T> GetColumnValues(int x)
+    {
+        var list = new List<T>();
+
+        for (var y = 0; y <= Height; y++)
+        {
+            list.Add(GetValue(x, y));
+        }
+
+        return list;
+    }
+
     public bool Contains(int x, int y) => !(x < 0 || y < 0 || x >= Width || y >= Height);
 
     public int CountValues(T value = default)
@@ -209,6 +233,21 @@ public class Map<T>
         }
 
         return (false, -1, -1);
+    }
+
+    public List<(int, int)> FindAll(T value)
+    {
+        var list = new List<(int, int)>();
+
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                if (GetValue(x, y).Equals(value)) list.Add((x, y));
+            }
+        }
+
+        return list;
     }
 
     /// <inheritdoc />
