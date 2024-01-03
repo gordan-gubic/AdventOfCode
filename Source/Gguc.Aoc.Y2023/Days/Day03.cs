@@ -110,9 +110,9 @@ public class Day03 : Day
     {
         var border = new List<Point>();
 
-        for (int j = point.Y - 1; j <= point.Y + 1; j++)
+        for (var j = point.Y - 1; j <= point.Y + 1; j++)
         {
-            for (int i = point.X - 1; i <= point.X + 1; i++)
+            for (var i = point.X - 1; i <= point.X + 1; i++)
             {
                 border.Add(new Point(i, j));
             }
@@ -215,11 +215,6 @@ public class Day03 : Day
         }
 
         return sources;
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

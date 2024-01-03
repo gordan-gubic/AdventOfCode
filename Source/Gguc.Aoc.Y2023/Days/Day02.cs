@@ -16,8 +16,8 @@ public class Day02 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "";
-        Expected2 = "";
+        Expected1 = "2879";
+        Expected2 = "65122";
     }
 
     /// <inheritdoc />
@@ -48,6 +48,65 @@ public class Day02 : Day
 
         Result = result;
     }
+    
+    private long FindLimit(int red, int green, int blue)
+    {
+        var sum = 0L;
+        var i = 1;
+
+        foreach (var game in _games)
+        {
+            var valid = IsValid(game, red, green, blue);
+
+            if (valid) sum += i;
+
+            i++;
+        }
+
+        return sum;
+    }
+
+    private long FindMinimum()
+    {
+        var sum = 0L;
+
+        foreach (var game in _games)
+        {
+            sum += Minimums(game);
+        }
+
+        return sum;
+    }
+
+    private bool IsValid(List<(int, string)> game, int red, int green, int blue)
+    {
+        foreach (var (x, y) in game)
+        {
+            if(x < 12) continue;
+
+            if(y == "red" && x > red) return false;
+            if(y == "green" && x > green) return false;
+            if(y == "blue" && x > blue) return false;
+        }
+
+        return true;
+    }
+
+    private long Minimums(List<(int, string)> game)
+    {
+        var red = 0;
+        var green = 0;
+        var blue = 0;
+
+        foreach (var (x, y) in game)
+        {
+            if (y == "red") red = Math.Max(x, red);
+            if (y == "green") green = Math.Max(x, green);
+            if (y == "blue") blue = Math.Max(x, blue);
+        }
+
+        return red * green * blue;
+    }
 
     protected override void ProcessData()
     {
@@ -55,7 +114,6 @@ public class Day02 : Day
 
         _games = new List<List<(int, string)>>();
 
-        // Gromit do something!
         foreach (var line in _data)
         {
             var rolls = ProcessLine(line);
@@ -85,70 +143,6 @@ public class Day02 : Day
 
         // rolls.DumpCollection("rolls");
         return rolls;
-    }
-
-    private long FindLimit(int red, int green, int blue)
-    {
-        var sum = 0L;
-        var i = 1;
-
-        foreach (var game in _games)
-        {
-            var valid = IsValid(game);
-
-            if (valid) sum += i;
-
-            i++;
-        }
-
-        return sum;
-    }
-
-    private long FindMinimum()
-    {
-        var sum = 0L;
-
-        foreach (var game in _games)
-        {
-            sum += Minimums(game);
-        }
-
-        return sum;
-    }
-
-    private bool IsValid(List<(int, string)> game)
-    {
-        foreach (var (x, y) in game)
-        {
-            if(x < 12) continue;
-
-            if(y == "red" && x > 12) return false;
-            if(y == "green" && x > 13) return false;
-            if(y == "blue" && x > 14) return false;
-        }
-
-        return true;
-    }
-
-    private long Minimums(List<(int, string)> game)
-    {
-        var red = 0;
-        var green = 0;
-        var blue = 0;
-
-        foreach (var (x, y) in game)
-        {
-            if (y == "red") red = Math.Max(x, red);
-            if (y == "green") green = Math.Max(x, green);
-            if (y == "blue") blue = Math.Max(x, blue);
-        }
-
-        return red * green * blue;
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

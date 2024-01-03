@@ -84,7 +84,7 @@ public class Day04 : Day
         {
             var current = key;
 
-            if(count == 0)continue;
+            if (count == 0) continue;
 
             var coef = counts[current];
 
@@ -138,11 +138,6 @@ public class Day04 : Day
         }
 
         _head = Parser.Type == ParserFileType.Real ? 10 : 5;
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

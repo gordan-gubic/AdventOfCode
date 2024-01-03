@@ -67,7 +67,7 @@ public class Day05 : Day
     {
         var pairs = new List<(long, long)>();
 
-        for (int i = 0; i < _seeds.Count - 1; i += 2)
+        for (var i = 0; i < _seeds.Count - 1; i += 2)
         {
             var a = _seeds[i];
             var b = _seeds[i] + _seeds[i+1] - 1;
@@ -254,11 +254,6 @@ public class Day05 : Day
         raw.ForEach(x => list.Add(x.ToLong()));
 
         return list;
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]
