@@ -9,6 +9,7 @@ using Gguc.Aoc.Y2020.DependencyModules;
 using Gguc.Aoc.Y2021.DependencyModules;
 using Gguc.Aoc.Y2022.DependencyModules;
 using Gguc.Aoc.Y2023.DependencyModules;
+using Gguc.Aoc.Y2024.DependencyModules;
 using Module = Autofac.Module;
 
 /// <summary>
@@ -28,5 +29,6 @@ public class HubModule : Module
         builder.RegisterModule<Y2021Module>();
         builder.RegisterModule<Y2022Module>();
         builder.RegisterModule<Y2023Module>();
+        builder.RegisterModule<Y2024Module>();
     }
 }

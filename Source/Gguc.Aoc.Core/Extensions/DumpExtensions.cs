@@ -43,9 +43,13 @@ public static class DumpExtensions
     }
 
     [Conditional("LOG")]
-    public static void DumpCollection(this IEnumerable input, string title = null)
+    public static void DumpCollection(this IEnumerable input, string title = null, bool newLine = false)
     {
         DumpTitle(title);
+
+        if (input == null) Trace.WriteLine("NULL");
+
+        if(newLine) Trace.WriteLine($"{Environment.NewLine}");
 
         foreach (var value in input)
         {

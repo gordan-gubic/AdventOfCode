@@ -38,13 +38,24 @@ public static class RegexExtensions
         return match.Groups[groupName].Value;
     }
 
-    public static IEnumerable<string> MatchAll(this string input, string pattern)
+    public static IEnumerable<string> MatchAll(this string input, string pattern, RegexOptions options = RegexOptions.None)
     {
-        var match = Regex.Match(input, pattern);
+        var match = Regex.Match(input, pattern, options);
 
         if (!match.Success) return null;
 
         return match.Groups.Values.Select(x => x.Value);
+    }
+
+    public static IEnumerable<string> Matches(this string input, string pattern, RegexOptions options = RegexOptions.None)
+    {
+        var matches = Regex.Matches(input, pattern, options);
+
+        if (matches.Count == 0) return null;
+
+        matches.ToList();
+
+        return matches.ToList().Select(x => x.Value);
     }
 
     public static string GroupValue(this string groupName, Match match)

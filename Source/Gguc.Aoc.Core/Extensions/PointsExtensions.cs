@@ -2,6 +2,18 @@
 
 public static class PointsExtensions
 {
+    private  static readonly Dictionary<int, (int, int)> Directions = new()
+    {
+          [0] = (  0, -1),
+         [45] = ( +1, -1),
+         [90] = ( +1,  0),
+        [135] = ( +1, +1),
+        [180] = (  0, +1),
+        [225] = ( -1, +1),
+        [270] = ( -1,  0),
+        [315] = ( -1, -1),
+    };
+
     public static long ManhattanDistance(this Point dot)
     {
         return Math.Abs(dot.X) + Math.Abs(dot.Y);
@@ -30,5 +42,12 @@ public static class PointsExtensions
     public static long ManhattanDistance(this PointLong point1, PointLong point2)
     {
         return Math.Abs(point1.X - point2.X) + Math.Abs(point1.Y - point2.Y);
+    }
+
+    public static (int, int) DegreeToDirection(this int degree)
+    {
+        if(!Directions.ContainsKey(degree)) return (0, 0);
+
+        return Directions[degree];
     }
 }
