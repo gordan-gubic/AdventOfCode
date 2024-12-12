@@ -19,7 +19,7 @@ public class Day09 : Day
         Initialize();
 
         Expected1 = "6448989155953";
-        Expected2 = "";
+        Expected2 = "6476642796832";
     }
 
     /// <inheritdoc />
