@@ -15,11 +15,16 @@ public static class DumpExtensions
     [Conditional("LOG")]
     public static void Dump(this object input, string title = null, bool newLine = false)
     {
-        DumpTitle(title);
-
-        var nl = newLine ? Environment.NewLine : "";
-
-        Trace.WriteLine($"{nl}{input}");
+        if (newLine)
+        {
+            DumpTitle(title);
+            Trace.WriteLine($"{Environment.NewLine}{input}");
+        }
+        else
+        {
+            title = title.IsWhitespace() ? "" : $"{title}: ";
+            Trace.WriteLine($"{title}{input}");
+        }
     }
 
     [Conditional("LOG")]

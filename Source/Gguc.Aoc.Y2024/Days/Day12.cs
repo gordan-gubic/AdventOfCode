@@ -26,7 +26,7 @@ public class Day12 : Day
         Initialize();
 
         Expected1 = "1471452";
-        Expected2 = "";
+        Expected2 = "863366";
     }
 
     /// <inheritdoc />

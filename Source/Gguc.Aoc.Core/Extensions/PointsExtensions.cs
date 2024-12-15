@@ -14,6 +14,15 @@ public static class PointsExtensions
         [315] = ( -1, -1),
     };
 
+    private static readonly Dictionary<char, (int, int)> Signs = new()
+    {
+        ['^'] = (0, -1),
+        ['>'] = (+1, 0),
+        ['v'] = (0, +1),
+        ['V'] = (0, +1),
+        ['<'] = (-1, 0),
+    };
+
     public static long ManhattanDistance(this Point dot)
     {
         return Math.Abs(dot.X) + Math.Abs(dot.Y);
@@ -49,5 +58,28 @@ public static class PointsExtensions
         if(!Directions.ContainsKey(degree)) return (0, 0);
 
         return Directions[degree];
+    }
+
+    public static Point DegreeToPoint(this Point point, int degree)
+    {
+        if (!Directions.ContainsKey(degree)) return point;
+
+        var dir = Directions[degree];
+        return new Point(point.X + dir.Item1, point.Y + dir.Item2);
+    }
+
+    public static (int, int) SignToDirection(this char sign)
+    {
+        if (!Signs.ContainsKey(sign)) return (0, 0);
+
+        return Signs[sign];
+    }
+
+    public static Point SignToPoint(this Point point, char sign)
+    {
+        if (!Signs.ContainsKey(sign)) return point;
+
+        var dir = Signs[sign];
+        return new Point(point.X + dir.Item1, point.Y + dir.Item2);
     }
 }
