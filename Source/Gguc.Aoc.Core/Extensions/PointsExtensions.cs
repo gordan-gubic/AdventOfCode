@@ -82,4 +82,18 @@ public static class PointsExtensions
         var dir = Signs[sign];
         return new Point(point.X + dir.Item1, point.Y + dir.Item2);
     }
+
+    public static int DegreeToLeft(this int degree, int delta = 90)
+    {
+        degree = degree - delta;
+        degree = degree < 0 ? 360 + degree : degree;
+        return degree;
+    }
+
+    public static int DegreeToRight(this int degree, int delta = 90)
+    {
+        degree = degree + delta;
+        degree = degree >= 360 ? degree - 360 : degree;
+        return degree;
+    }
 }

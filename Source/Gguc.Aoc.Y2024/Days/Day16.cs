@@ -9,23 +9,27 @@ public class Day16 : Day
     private const int DAY = 16;
 
     private List<string> _data;
+    private Map<char> _map;
+    private Map<bool> _walls;
+    private MazeSearch _mazeSearch;
 
     public Day16(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
 
-        Expected1 = "";
-        Expected2 = "";
+        Expected1 = "92432";
+        Expected2 = "458";
     }
 
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Real;
         Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Real;
 
-        _data = Parser.Parse();
+        _map = Parser.ParseMapChar();
+        _walls = Parser.ParseMapBool();
     }
 
     /// <inheritdoc />
@@ -36,31 +40,32 @@ public class Day16 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0L;
+        CalculateBestPath();
 
-        Result = result;
+        var found = _mazeSearch.Result.MinBy(x => x.Value);
+        var foundMin = found?.Value ?? 0L;
+
+        Result = foundMin;
     }
 
     protected override void ComputePart2()
     {
-        var result = 0L;
+        var found = _mazeSearch.Result.MinBy(x => x.Value);
+        var foundMin = found?.Value ?? 0L;
 
-        Result = result;
+        var seats = new HashSet<Point>();
+        _mazeSearch.Result.Where(x => x.Value == foundMin).ForEach(m => m.Points.ForEach(p => seats.Add(p)));
+
+        Result = seats.Count;
     }
 
-    protected override void ProcessData()
+    private void CalculateBestPath()
     {
-        base.ProcessData();
+        _mazeSearch = new MazeSearch();
+        _mazeSearch.Map = _map;
+        _mazeSearch.Walls = _walls;
 
-        // Gromit do something!
-        foreach (var line in _data)
-        {
-        }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
+        _mazeSearch.Find();
     }
 
     [Conditional("LOG")]
@@ -70,7 +75,9 @@ public class Day16 : Day
 
         Debug();
 
-        _data.DumpCollection();
+        // _data.DumpCollection();
+        // _map.MapValueToString().Dump("map", true);
+        // _walls.MapBoolToString().Dump("_walls", true);
     }
 }
 
