@@ -5,7 +5,7 @@ namespace Gguc.Aoc.Y2024.Services;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MazeSearch
+public class MazeSearch20
 {
     private readonly Dictionary<(int, int, int), long> _cache;
 
@@ -13,31 +13,34 @@ public class MazeSearch
     private Queue<MazeStep> _active;
 
     public Map<char> Map { get; set; }
-    
+
     public Map<bool> Walls { get; set; }
 
     public List<MazeStep> Result { get; } = new();
 
-    public MazeSearch()
+    public MazeSearch20()
     {
         _cache = new();
     }
 
-    public void Find()
+    public void Find(Point start, int value = 0)
     {
-        var start = Map.Find('S');
-        var end = Map.Find('E');
-
         _start = new MazeStep
         {
-            Point = new Point(start.Item2, start.Item3),
-            Dir = 90
+            Point = start,
+            Value = value,
         };
 
         _active = new();
         _active.Enqueue(_start);
 
         CalculatePath();
+    }
+
+    public void Clear()
+    {
+        _cache.Clear();
+        Result.Clear();
     }
 
     private void CalculatePath()
@@ -56,11 +59,11 @@ public class MazeSearch
 
         step.Path.Add(step.Point);
         step.Points.Add(step.Point);
-        
+
         if (Map.GetValue(x, y) == 'E')
         {
             Result.Add(step);
-            // _active.Clear();
+            _active.Clear();
             return;
         }
 
@@ -76,10 +79,12 @@ public class MazeSearch
     {
         return new List<MazeStep>
         {
-            GetStraight(step),
-            GetLeft(step),
-            GetRight(step),
+            GetStep(step, 0),
+            GetStep(step, 90),
+            GetStep(step, 180),
+            GetStep(step, 270),
         };
+
     }
 
     private List<MazeStep> ValidateCandidates(List<MazeStep> candidates, MazeStep step)
@@ -88,7 +93,7 @@ public class MazeSearch
 
         foreach (var candidate in candidates)
         {
-            if(ValidateCandidate(candidate)) validated.Add(candidate);
+            if (ValidateCandidate(candidate)) validated.Add(candidate);
         }
 
         return validated;
@@ -107,41 +112,12 @@ public class MazeSearch
         return true;
     }
 
-    private MazeStep GetStraight(MazeStep step)
+    private MazeStep GetStep(MazeStep step, int dir)
     {
         return new MazeStep
         {
-            Point = step.Point.DegreeToPoint(step.Dir),
-            Dir = step.Dir,
+            Point = step.Point.DegreeToPoint(dir),
             Value = step.Value + 1,
-            Path = step.Path.ToList(),
-            Points = step.Points.ToHashSet(),
-        };
-    }
-
-    private MazeStep GetLeft(MazeStep step)
-    {
-        var dir = step.Dir.DegreeToLeft();
-
-        return new MazeStep
-        {
-            Point = step.Point.DegreeToPoint(dir),
-            Dir = dir,
-            Value = step.Value + 1001,
-            Path = step.Path.ToList(),
-            Points = step.Points.ToHashSet(),
-        };
-    }
-
-    private MazeStep GetRight(MazeStep step)
-    {
-        var dir = step.Dir.DegreeToRight();
-
-        return new MazeStep
-        {
-            Point = step.Point.DegreeToPoint(dir),
-            Dir = dir,
-            Value = step.Value + 1001,
             Path = step.Path.ToList(),
             Points = step.Points.ToHashSet(),
         };

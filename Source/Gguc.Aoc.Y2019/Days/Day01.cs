@@ -1,4 +1,4 @@
-﻿#define LOG
+﻿#define LOGx
 #define STOPWATCH
 
 namespace Gguc.Aoc.Y2019.Days;
@@ -14,12 +14,16 @@ public class Day01 : Day
     {
         EnableDebug();
         Initialize();
+
+        Expected1 = "3432671";
+        Expected2 = "5146132";
     }
 
     /// <inheritdoc />
     protected override void InitParser()
     {
         Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Real;
 
         _data = Parser.Parse(Convert);
     }

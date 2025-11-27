@@ -13,7 +13,6 @@ public class Day17 : Day
     private List<string> _data;
     private Day17Memory _memory;
 
-
     public Day17(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();

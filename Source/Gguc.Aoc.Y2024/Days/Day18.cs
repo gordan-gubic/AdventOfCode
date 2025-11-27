@@ -13,6 +13,8 @@ public class Day18 : Day
     private Map<bool> _walls;
     private List<Point> _points;
 
+    private RamSearch _search;
+
     public Day18(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
@@ -45,8 +47,9 @@ public class Day18 : Day
 
     protected override void ComputePart2()
     {
-        // Result = CalculateBlockedPath(12);
+        // var point = CalculateBlockedPath(12);
         var point = CalculateBlockedPath(1024);
+        
         Log.Info($"Result=[{point}]");
     }
 
@@ -61,14 +64,16 @@ public class Day18 : Day
             _map[_points[i].X, _points[i].Y] = '#';
         }
 
-        var search = new RamSearch
+        _search = new RamSearch
         {
             Walls = _walls
         };
 
-        search.Find();
+        _search.Find();
 
-        var result = search.Result.MinBy(x => x.Value).Value;
+        var result = _search.Result.MinBy(x => x.Value).Value;
+
+        _search.Result.Count.Dump("count");
 
         return result;
     }
@@ -77,22 +82,32 @@ public class Day18 : Day
     {
         var point = default(Point);
 
+        var result = _search.Result.ToList();
+
         for (var i = 12; i < _points.Count; i++)
         {
             _walls[_points[i].X, _points[i].Y] = true;
 
-            var search = new RamSearch
-            {
-                Walls = _walls
-            };
+            var p = _points[i];
 
-            search.Find();
+            result.RemoveAll(x => x.Points.Contains(p));
 
-            if (search.Result.IsNullOrEmpty())
+            if (result.IsNullOrEmpty())
             {
-                // $"Break at {i}. {_points[i]}".Dump();
-                point = _points[i];
-                break;
+                var search = new RamSearch
+                {
+                    Walls = _walls
+                };
+
+                search.Find();
+                result = search.Result;
+
+                if (result.IsNullOrEmpty())
+                {
+                    // $"Break at {i}. {_points[i]}".Dump();
+                    point = _points[i];
+                    break;
+                }
             }
         }
 
