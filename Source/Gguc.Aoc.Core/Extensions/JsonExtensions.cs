@@ -1,19 +1,27 @@
 ﻿namespace Gguc.Aoc.Core.Extensions;
 
+using System;
+using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+
 /// <summary>
-/// Extension methods for JSON
+/// Extension methods for JSON.
 /// </summary>
 public static class JsonExtensions
 {
-    private static readonly JsonSerializerSettings DefaultJsonSerializerSettings = new JsonSerializerSettings
+    private static readonly JsonSerializerOptions DefaultJsonSerializerSettings = new()
     {
-        Converters = new List<JsonConverter> { new StringEnumConverter() }
+        Converters = { new JsonStringEnumConverter() },
+        PropertyNameCaseInsensitive = true
     };
 
-    private static readonly JsonSerializerSettings IndentedJsonSerializerSettings = new JsonSerializerSettings
+    private static readonly JsonSerializerOptions IndentedJsonSerializerSettings = new()
     {
-        Converters = new List<JsonConverter> { new StringEnumConverter() },
-        Formatting = Formatting.Indented,
+        Converters = { new JsonStringEnumConverter() },
+        WriteIndented = true,
+        PropertyNameCaseInsensitive = true
     };
 
     /// <summary>
@@ -26,7 +34,7 @@ public static class JsonExtensions
     {
         try
         {
-            return JsonConvert.DeserializeObject<T>(json, DefaultJsonSerializerSettings);
+            return JsonSerializer.Deserialize<T>(json, DefaultJsonSerializerSettings);
         }
         catch (Exception ex)
         {
@@ -44,7 +52,7 @@ public static class JsonExtensions
     {
         try
         {
-            return JsonConvert.SerializeObject(value, DefaultJsonSerializerSettings);
+            return JsonSerializer.Serialize(value, DefaultJsonSerializerSettings);
         }
         catch (Exception ex)
         {
@@ -54,20 +62,63 @@ public static class JsonExtensions
     }
 
     /// <summary>
-    /// Serializes the specified object to a JSON string with indented formatting.
+    /// Serializes the specified object to an indented JSON string.
     /// </summary>
     /// <param name="value">The object to serialize.</param>
-    /// <returns>A JSON string representation of the object.</returns>
+    /// <returns>An indented JSON string representation of the object.</returns>
     public static string ToJsonIndented(this object value)
     {
         try
         {
-            return JsonConvert.SerializeObject(value, IndentedJsonSerializerSettings);
+            return JsonSerializer.Serialize(value, IndentedJsonSerializerSettings);
         }
         catch (Exception ex)
         {
             Trace.TraceWarning($"Error occurred during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
             return default;
         }
+    }
+
+    /// <summary>
+    /// Gets the value type from a JSON value.
+    /// </summary>
+    /// <param name="jsonValue">The JSON value.</param>
+    /// <returns>The value type.</returns>
+    public static Type GetValueType(this JsonNode jsonValue)
+    {
+        if (jsonValue == null)
+        {
+            return null;
+        }
+
+        var value = jsonValue.GetValue<object>();
+
+        if (value is JsonElement element)
+        {
+            return element.GetValueType();
+        }
+
+        return value.GetType();
+    }
+
+    /// <summary>
+    /// Gets the value type from a JSON value.
+    /// </summary>
+    /// <param name="jsonValue">The JSON value.</param>
+    /// <returns>The value type.</returns>
+    public static Type GetValueType(this JsonElement jsonValue)
+    {
+        return jsonValue.ValueKind switch
+        {
+            JsonValueKind.False => typeof(bool),
+            JsonValueKind.True => typeof(bool),
+            JsonValueKind.Number => typeof(double),
+            JsonValueKind.String => typeof(string),
+            JsonValueKind.Object => typeof(JsonObject),
+            JsonValueKind.Array => typeof(JsonArray),
+            JsonValueKind.Undefined => null,
+            JsonValueKind.Null => null,
+            _ => typeof(JsonElement)
+        };
     }
 }

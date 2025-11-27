@@ -1,7 +1,5 @@
 ﻿namespace Gguc.Aoc.Y2022.Models;
 
-using Newtonsoft.Json;
-
 public class FactoryNode
 {
     public int Time { get; set; }

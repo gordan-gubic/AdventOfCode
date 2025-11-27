@@ -40,6 +40,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2023", "Source\Gg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gguc.Aoc.Y2024", "Source\Gguc.Aoc.Y2024\Gguc.Aoc.Y2024.csproj", "{517AEFDD-3E01-4574-8573-569E737DBF02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gguc.Aoc.Y2025", "Source\Gguc.Aoc.Y2025\Gguc.Aoc.Y2025.csproj", "{CADBC0F2-FC7C-9F7B-860F-812AD389DFC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{517AEFDD-3E01-4574-8573-569E737DBF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{517AEFDD-3E01-4574-8573-569E737DBF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{517AEFDD-3E01-4574-8573-569E737DBF02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADBC0F2-FC7C-9F7B-860F-812AD389DFC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADBC0F2-FC7C-9F7B-860F-812AD389DFC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADBC0F2-FC7C-9F7B-860F-812AD389DFC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADBC0F2-FC7C-9F7B-860F-812AD389DFC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

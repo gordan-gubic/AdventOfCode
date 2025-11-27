@@ -1,7 +1,5 @@
 ﻿namespace Gguc.Aoc.Y2021.Models;
 
-using Newtonsoft.Json;
-
 public record Snail
 {
     [JsonIgnore]

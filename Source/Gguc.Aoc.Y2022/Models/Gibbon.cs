@@ -1,7 +1,5 @@
 ﻿namespace Gguc.Aoc.Y2022.Models;
 
-using Newtonsoft.Json;
-
 internal class Gibbon
 {
     public string Name { get; set; }

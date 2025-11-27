@@ -1,7 +1,5 @@
 ﻿namespace Gguc.Aoc.Y2022.Models;
 
-using Newtonsoft.Json;
-
 internal class FileDescription
 {
     public Guid Id { get; } = Guid.NewGuid();
