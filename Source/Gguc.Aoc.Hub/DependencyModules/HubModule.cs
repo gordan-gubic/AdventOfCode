@@ -3,6 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Autofac;
 using Gguc.Aoc.Core.DependencyModules;
+using Gguc.Aoc.Y2015.DependencyModules;
 using Gguc.Aoc.Y2018.DependencyModules;
 using Gguc.Aoc.Y2019.DependencyModules;
 using Gguc.Aoc.Y2020.DependencyModules;
@@ -24,6 +25,7 @@ public class HubModule : Module
     {
         // Modules
         builder.RegisterModule<CoreModule>();
+        builder.RegisterModule<Y2015Module>();
         builder.RegisterModule<Y2018Module>();
         builder.RegisterModule<Y2019Module>();
         // builder.RegisterModule<Y2020Module>();

@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Resources\Gguc.Aoc.Resources.csproj" />
+    <ProjectReference Include="..\Gguc.Aoc.Y2015\Gguc.Aoc.Y2015.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Y2018\Gguc.Aoc.Y2018.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Y2019\Gguc.Aoc.Y2019.csproj" />
     <ProjectReference Include="..\Gguc.Aoc.Y2020\Gguc.Aoc.Y2020.csproj" />

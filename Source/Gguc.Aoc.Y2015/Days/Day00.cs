@@ -1,11 +1,11 @@
 ﻿#define LOG
 #define STOPWATCH
 
-namespace Gguc.Aoc.Y2025.Days;
+namespace Gguc.Aoc.Y2015.Days;
 
 public class Day00 : Day
 {
-    private const int YEAR = 2025;
+    private const int YEAR = 2015;
     private const int DAY = 0;
 
     private List<string> _raw;

@@ -8,7 +8,7 @@ public class Day01 : Day
     private const int YEAR = 2025;
     private const int DAY = 1;
 
-    private List<string> _data;
+    private List<string> _raw;
 
     public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
@@ -25,7 +25,7 @@ public class Day01 : Day
         Parser.Type = ParserFileType.Real;
         Parser.Type = ParserFileType.Test;
 
-        _data = Parser.Parse();
+        _raw = Parser.Parse();
     }
 
     /// <inheritdoc />
@@ -53,7 +53,7 @@ public class Day01 : Day
         base.ProcessData();
 
         // Gromit do something!
-        foreach (var line in _data)
+        foreach (var line in _raw)
         {
         }
     }
@@ -66,11 +66,13 @@ public class Day01 : Day
     [Conditional("LOG")]
     private void DumpData()
     {
+        if (Parser.Type == ParserFileType.Real) Log.EnableDebug = false;
+
         if (!Log.EnableDebug) return;
 
         Debug();
 
-        _data.DumpCollection();
+        _raw.DumpCollection();
     }
 }
 
