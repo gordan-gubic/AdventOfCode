@@ -3,21 +3,21 @@
 
 namespace Gguc.Aoc.Y2025.Days;
 
-public class Day00 : Day
+public class Day03 : Day
 {
     private const int YEAR = 2025;
-    private const int DAY = 0;
+    private const int DAY = 03;
 
     private List<string> _raw;
     private List<string> _data;
 
-    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day03(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
 
-        Expected1 = "_2025_00_1_";
-        Expected2 = "_2025_00_2_";
+        Expected1 = "_2025_03_1_";
+        Expected2 = "_2025_03_2_";
     }
 
     /// <inheritdoc />

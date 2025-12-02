@@ -4,7 +4,7 @@ public class App
 {
     private const string ClassId = nameof(App);
     
-    private const int DayKey = 201501;
+    private const int DayKey = 202502;
     
     private static TraceLog _log;
 
@@ -66,7 +66,9 @@ public class App
 
     private void DumpInput(IDay day)
     {
+        _log.Info("-------------------------------------------");
         day.DumpInput();
+        _log.Info("-------------------------------------------");
     }
 
     private void ExecutePart1(IDay day)

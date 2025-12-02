@@ -9,14 +9,15 @@ public class Day01 : Day
     private const int DAY = 1;
 
     private List<string> _raw;
+    private List<(char, int)> _data;
 
     public Day01(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
 
-        Expected1 = "2025-01-A";
-        Expected2 = "2025-01-B";
+        Expected1 = "1158";
+        Expected2 = "6860";
     }
 
     /// <inheritdoc />
@@ -36,25 +37,96 @@ public class Day01 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0L;
+        var result = CountNorth();
 
         Result = result;
     }
 
     protected override void ComputePart2()
     {
-        var result = 0L;
+        var result = CountAllNorth();
 
         Result = result;
+    }
+
+    private long CountNorth()
+    {
+        var result = 0L;
+
+        var pos = 50;
+        var mt = 0;
+
+        foreach (var line in _data)
+        {
+            (pos, mt) = ProcessLine(pos, line.Item1, line.Item2);
+            if (pos == 0) result++;
+
+            Debug($"{new { line, pos, mt }}");
+        }
+
+        return result;
+    }
+
+    private long CountAllNorth()
+    {
+        var result = 0L;
+
+        var pos = 50;
+        var mt = 0;
+
+        foreach (var line in _data)
+        {
+            (pos, mt) = ProcessLine(pos, line.Item1, line.Item2);
+            result += mt;
+        }
+
+        return result;
+    }
+
+    private (int, int) ProcessLine(int pos, char dir, int value)
+    {
+        var oldpos = pos;
+
+        pos = dir switch
+        {
+            'R' => pos + value,
+            'L' => pos - value,
+            _ => pos
+        };
+
+        var m = 0;
+
+        if (pos < 0)
+        {
+            m = pos / -100;
+            pos += m * 100;
+            if (pos < 0) pos = 100 + pos;
+
+            if (oldpos > 0) m++;
+        }
+        else if (pos >= 100)
+        {
+            m = pos / 100;
+            pos -= m * 100;
+        }
+
+        if (pos == 0 && m == 0) m++;
+
+        return (pos, m);
     }
 
     protected override void ProcessData()
     {
         base.ProcessData();
 
+        _data = new();
+
         // Gromit do something!
         foreach (var line in _raw)
         {
+            var part1 = line[0];
+            var part2 = line[1..].ToInt();
+            _data.Add((part1, part2));
         }
     }
 
@@ -72,7 +144,8 @@ public class Day01 : Day
 
         Debug();
 
-        _raw.DumpCollection();
+        // _raw.DumpCollection();
+        _data.DumpCollection();
     }
 }
 
