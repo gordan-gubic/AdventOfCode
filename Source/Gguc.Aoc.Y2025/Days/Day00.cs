@@ -37,16 +37,26 @@ public class Day00 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0L;
-
-        Result = result;
+        Result = Count_Part01();
     }
 
     protected override void ComputePart2()
     {
+        Result = Count_Part02();
+    }
+
+    private long Count_Part01()
+    {
         var result = 0L;
 
-        Result = result;
+        return result;
+    }
+
+    private long Count_Part02()
+    {
+        var result = 0L;
+
+        return result;
     }
 
     protected override void ProcessData()
@@ -59,11 +69,6 @@ public class Day00 : Day
         foreach (var line in _raw)
         {
         }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

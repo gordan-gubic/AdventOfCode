@@ -12,11 +12,11 @@ public static class MapExtensions
         var cols = data[0].Length;
         var sb = new StringBuilder();
 
-        for (int i = 0; i < cols; i++)
+        for (var i = 0; i < cols; i++)
         {
             sb.Clear();
 
-            for (int j = 0; j < rows; j++)
+            for (var j = 0; j < rows; j++)
             {
                 sb.Append(data[j][i]);
             }
@@ -141,5 +141,38 @@ public static class MapExtensions
         });
 
         return min;
+    }
+
+    public static List<T> GetNeighbors<T>(this Map<T> map, int x, int y)
+    {
+        var list = new List<T>();
+
+        for (var i = -1; i <= 1; i++)
+        {
+            for (var j = -1; j <= 1; j++)
+            {
+                if(i == 0 && j == 0) continue;
+                list.Add(map.GetValue(x + i, y + j));
+            }
+        }
+
+        return list;
+    }
+
+    public static int CountNeighbors<T>(this Map<T> map, int x, int y, Func<T, bool> predicate)
+    {
+        var count = 0;
+
+        for (var i = -1; i <= 1; i++)
+        {
+            for (var j = -1; j <= 1; j++)
+            {
+                if (i == 0 && j == 0) continue;
+                var isTrue = predicate(map.GetValue(x + i, y + j));
+                if (isTrue) count++;
+            }
+        }
+
+        return count;
     }
 }

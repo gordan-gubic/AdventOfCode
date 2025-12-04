@@ -37,16 +37,12 @@ public class Day01 : Day
 
     protected override void ComputePart1()
     {
-        var result = CalculateFloors();
-
-        Result = result;
+        Result = CalculateFloors();
     }
 
     protected override void ComputePart2()
     {
-        var result = FindBasement();
-
-        Result = result;
+        Result = FindBasement();
     }
 
     private long CalculateFloors()
@@ -114,11 +110,6 @@ public class Day01 : Day
         {
             _data.Add(line.ToCharArray());
         }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

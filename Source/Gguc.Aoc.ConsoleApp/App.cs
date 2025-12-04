@@ -4,7 +4,7 @@ public class App
 {
     private const string ClassId = nameof(App);
     
-    private const int DayKey = 202502;
+    private const int DayKey = 202504;
     
     private static TraceLog _log;
 
@@ -76,11 +76,13 @@ public class App
         _log.Info("");
         _log.InfoLog(ClassId, "Part 01");
 
+        var stopwatch = Stopwatch.StartNew();
         var result = day.SolutionPart1();
+        stopwatch.Stop();
 
         if(day.Expected1.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Expect: [{day.Expected1}]");
 
-        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Result: [{result}]");
+        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Result: [{result}] *** Time: [{stopwatch.Elapsed}]");
         SetClipboard(result);
     }
 
@@ -89,11 +91,13 @@ public class App
         _log.Info("");
         _log.InfoLog(ClassId, "Part 02");
 
+        var stopwatch = Stopwatch.StartNew();
         var result = day.SolutionPart2();
+        stopwatch.Stop();
 
         if (day.Expected2.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Expect: [{day.Expected2}]");
 
-        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Result: [{result}]");
+        _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Result: [{result}] *** Time: [{stopwatch.Elapsed}]");
         SetClipboard(result);
     }
 

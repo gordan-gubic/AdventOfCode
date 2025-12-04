@@ -37,16 +37,12 @@ public class Day02 : Day
 
     protected override void ComputePart1()
     {
-        var result = CountValidPairs(IsValidNumber1);
-
-        Result = result;
+        Result = CountValidPairs(IsValidNumber1);
     }
 
     protected override void ComputePart2()
     {
-        var result = CountValidPairs(IsValidNumber2);
-
-        Result = result;
+        Result = CountValidPairs(IsValidNumber2);
     }
 
     private long CountValidPairs(Predicate<long> action)
@@ -166,11 +162,6 @@ public class Day02 : Day
                 _data.Add((p1, p2));
             }
         }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]

@@ -9,22 +9,22 @@ public class Day03 : Day
     private const int DAY = 03;
 
     private List<string> _raw;
-    private List<string> _data;
+    private List<List<int>> _data;
 
     public Day03(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
         Initialize();
 
-        Expected1 = "_2025_03_1_";
-        Expected2 = "_2025_03_2_";
+        Expected1 = "17229";
+        Expected2 = "170520923035051";
     }
 
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Real;
         Parser.Type = ParserFileType.Test;
+        Parser.Type = ParserFileType.Real;
 
         _raw = Parser.Parse();
     }
@@ -37,16 +37,46 @@ public class Day03 : Day
 
     protected override void ComputePart1()
     {
-        var result = 0L;
-
-        Result = result;
+        Result = TotalJoltage(2);
     }
 
     protected override void ComputePart2()
     {
+        Result = TotalJoltage(12);
+    }
+
+    private long TotalJoltage(int digits)
+    {
         var result = 0L;
 
-        Result = result;
+        foreach (var list in _data)
+        {
+            var max = MaxJoltage(list, digits);
+            result += max;
+
+            Debug($"{new { max }}");
+        }
+
+        return result;
+    }
+
+    private long MaxJoltage(List<int> list, int digits)
+    {
+        var joltage = 0L;
+        var index = 0;
+
+        while (digits > 0)
+        {
+            var l1 = list[index..^(digits - 1)];
+            var m1 = l1.Max();
+            index += l1.IndexOf(m1) + 1;
+
+            joltage += m1 * (long)Math.Pow(10, digits - 1);
+
+            digits--;
+        }
+
+        return joltage;
     }
 
     protected override void ProcessData()
@@ -58,12 +88,9 @@ public class Day03 : Day
         // Gromit do something!
         foreach (var line in _raw)
         {
+            var numbers = line.ToCharArray().Select(x => x.ToInt()).ToList();
+            _data.Add(numbers);
         }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]
@@ -75,7 +102,7 @@ public class Day03 : Day
 
         Debug();
 
-        _raw.DumpCollection();
+        _data.DumpJson();
     }
 }
 

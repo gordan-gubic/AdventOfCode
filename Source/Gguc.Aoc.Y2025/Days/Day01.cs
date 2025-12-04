@@ -37,16 +37,12 @@ public class Day01 : Day
 
     protected override void ComputePart1()
     {
-        var result = CountNorth();
-
-        Result = result;
+        Result = CountNorth();
     }
 
     protected override void ComputePart2()
     {
-        var result = CountAllNorth();
-
-        Result = result;
+        Result = CountAllNorth();
     }
 
     private long CountNorth()
@@ -128,11 +124,6 @@ public class Day01 : Day
             var part2 = line[1..].ToInt();
             _data.Add((part1, part2));
         }
-    }
-
-    private int Convert(string input)
-    {
-        return input.ToInt();
     }
 
     [Conditional("LOG")]
