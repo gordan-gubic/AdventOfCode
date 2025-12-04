@@ -3,9 +3,9 @@
 public class App
 {
     private const string ClassId = nameof(App);
-    
-    private const int DayKey = 202504;
-    
+
+    private const int DayKey = 202505;
+
     private static TraceLog _log;
 
     public App()
@@ -36,11 +36,9 @@ public class App
 
         Header(day);
 
-        DumpInput(day);
+        ExecuteTest(day);
 
-        ExecutePart1(day);
-
-        ExecutePart2(day);
+        ExecuteProd(day);
     }
 
     private void Initialize()
@@ -64,6 +62,48 @@ public class App
         _log.InfoLog(ClassId, message);
     }
 
+    private void ExecuteTest(IDay day)
+    {
+        if (!day.ExecuteTest) return;
+
+        try
+        {
+            _log.Info("-------------------------------------------");
+            _log.InfoLog(ClassId, "TEST");
+
+            day.InitializeTest();
+            DumpInput(day);
+
+            ExecutePart1(day, day.ExpectedTest1);
+            ExecutePart2(day, day.ExpectedTest2);
+        }
+        catch (Exception ex)
+        {
+            _log.WarnLog(ClassId, $"Test Failed. Error=[{ex.Message}]", ex);
+        }
+    }
+
+    private void ExecuteProd(IDay day)
+    {
+        if (!day.ExecuteProd) return;
+
+        try
+        {
+            _log.Info("-------------------------------------------");
+            _log.InfoLog(ClassId, "PROD");
+
+            day.InitializeProd();
+            DumpInput(day);
+
+            ExecutePart1(day, day.ExpectedProd1);
+            ExecutePart2(day, day.ExpectedProd2);
+        }
+        catch (Exception ex)
+        {
+            _log.WarnLog(ClassId, $"Prod Failed. Error=[{ex.Message}]", ex);
+        }
+    }
+
     private void DumpInput(IDay day)
     {
         _log.Info("-------------------------------------------");
@@ -71,7 +111,7 @@ public class App
         _log.Info("-------------------------------------------");
     }
 
-    private void ExecutePart1(IDay day)
+    private void ExecutePart1(IDay day, string expected = null)
     {
         _log.Info("");
         _log.InfoLog(ClassId, "Part 01");
@@ -80,13 +120,13 @@ public class App
         var result = day.SolutionPart1();
         stopwatch.Stop();
 
-        if(day.Expected1.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Expect: [{day.Expected1}]");
+        if (day.ExpectedProd1.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Expect: [{expected}]");
 
         _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 01 *** Result: [{result}] *** Time: [{stopwatch.Elapsed}]");
         SetClipboard(result);
     }
 
-    private void ExecutePart2(IDay day)
+    private void ExecutePart2(IDay day, string expected = null)
     {
         _log.Info("");
         _log.InfoLog(ClassId, "Part 02");
@@ -95,7 +135,7 @@ public class App
         var result = day.SolutionPart2();
         stopwatch.Stop();
 
-        if (day.Expected2.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Expect: [{day.Expected2}]");
+        if (day.ExpectedProd2.IsNotWhitespace()) _log.InfoLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Expect: [{expected}]");
 
         _log.WarnLog(ClassId, $" *** Day [{DayKey}] - Part 02 *** Result: [{result}] *** Time: [{stopwatch.Elapsed}]");
         SetClipboard(result);

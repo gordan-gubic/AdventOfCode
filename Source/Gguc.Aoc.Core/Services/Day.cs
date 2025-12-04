@@ -29,11 +29,21 @@ public abstract class Day : IDay
 
     public int Id { get; }
 
+    public bool TestExample { get; set; }
+
+    public bool ExecuteTest { get; set; }
+
+    public bool ExecuteProd { get; set; }
+
     public int CurrentPart { get; set; }
 
-    public string Expected1 { get; set; }
+    public string ExpectedTest1 { get; set; }
 
-    public string Expected2 { get; set; }
+    public string ExpectedTest2 { get; set; }
+
+    public string ExpectedProd1 { get; set; }
+
+    public string ExpectedProd2 { get; set; }
 
     protected ILog Log { get; }
 
@@ -45,6 +55,26 @@ public abstract class Day : IDay
 
     /// <inheritdoc />
     public abstract void DumpInput();
+
+    /// <inheritdoc />
+    public void InitializeTest()
+    {
+        Parser.Type = TestExample ? ParserFileType.Example : ParserFileType.Test;
+
+        InitParser();
+
+        ProcessData();
+    }
+
+    /// <inheritdoc />
+    public void InitializeProd()
+    {
+        Parser.Type = ParserFileType.Real;
+
+        InitParser();
+
+        ProcessData();
+    }
 
     /// <inheritdoc />
     public long SolutionPart1()

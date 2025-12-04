@@ -14,18 +14,21 @@ public class Day04 : Day
     public Day04(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
-        Initialize();
 
-        Expected1 = "1411";
-        Expected2 = "8557";
+        TestExample = true;
+        ExecuteTest = true;
+        ExecuteProd = true;
+
+        ExpectedTest1 = "13";
+        ExpectedTest2 = "43";
+
+        ExpectedProd1 = "1411";
+        ExpectedProd2 = "8557";
     }
 
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Test;
-        Parser.Type = ParserFileType.Real;
-
         _raw = Parser.Parse();
         _data = Parser.ParseMapBool('@');
     }

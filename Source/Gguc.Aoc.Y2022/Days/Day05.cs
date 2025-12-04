@@ -18,8 +18,8 @@ public class Day05 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "BWNCQRMDB";
-        Expected2 = "NHWZCBNBF";
+        ExpectedProd1 = "BWNCQRMDB";
+        ExpectedProd2 = "NHWZCBNBF";
     }
 
     /// <inheritdoc />

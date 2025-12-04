@@ -24,8 +24,8 @@ public class Day07 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "BGJCNLQUYIFMOEZTADKSPVXRHW";
-        Expected2 = "1017";
+        ExpectedProd1 = "BGJCNLQUYIFMOEZTADKSPVXRHW";
+        ExpectedProd2 = "1017";
     }
 
     protected override void InitParser()

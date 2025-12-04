@@ -17,8 +17,8 @@ public class Day08 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "16897";
-        Expected2 = "16563603485021";
+        ExpectedProd1 = "16897";
+        ExpectedProd2 = "16563603485021";
     }
 
     /// <inheritdoc />

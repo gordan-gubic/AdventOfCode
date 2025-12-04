@@ -17,8 +17,8 @@ public class Day25 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "2=-0=1-0012-=-2=0=01";
-        Expected2 = "";
+        ExpectedProd1 = "2=-0=1-0012-=-2=0=01";
+        ExpectedProd2 = "";
     }
 
     /// <inheritdoc />

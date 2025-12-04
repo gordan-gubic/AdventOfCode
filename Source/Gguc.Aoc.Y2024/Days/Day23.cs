@@ -17,8 +17,8 @@ public class Day23 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "1308";
-        Expected2 = "bu,fq,fz,pn,rr,st,sv,tr,un,uy,zf,zi,zy";
+        ExpectedProd1 = "1308";
+        ExpectedProd2 = "bu,fq,fz,pn,rr,st,sv,tr,un,uy,zf,zi,zy";
     }
 
     /// <inheritdoc />

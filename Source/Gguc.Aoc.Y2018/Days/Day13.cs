@@ -17,8 +17,8 @@ public class Day13 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "53,133";
-        Expected2 = "111,68";
+        ExpectedProd1 = "53,133";
+        ExpectedProd2 = "111,68";
     }
 
     protected override void InitParser()

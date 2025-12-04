@@ -8,11 +8,25 @@ public interface IDay
 
     int Id { get; }
 
-    string Expected1 { get; set; }
+    bool TestExample { get; set; }
 
-    string Expected2 { get; set; }
+    bool ExecuteTest { get; set; }
+
+    bool ExecuteProd { get; set; }
+
+    string ExpectedTest1 { get; set; }
+
+    string ExpectedTest2 { get; set; }
+
+    string ExpectedProd1 { get; set; }
+
+    string ExpectedProd2 { get; set; }
 
     void DumpInput();
+
+    void InitializeTest();
+
+    void InitializeProd();
 
     long SolutionPart1();
 

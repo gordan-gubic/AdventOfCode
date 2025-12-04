@@ -24,8 +24,8 @@ public class Day06 : Day
         EnableDebug();
         Initialize();
 
-        Expected1 = "3909";
-        Expected2 = "36238";
+        ExpectedProd1 = "3909";
+        ExpectedProd2 = "36238";
     }
 
     protected override void InitParser()
