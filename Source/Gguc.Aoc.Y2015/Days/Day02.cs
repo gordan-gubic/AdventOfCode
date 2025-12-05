@@ -14,27 +14,20 @@ public class Day02 : Day
     {
         EnableDebug();
 
-        TestExample = false;
+        TestExample = true;
         ExecuteTest = true;
         ExecuteProd = true;
 
-        ExpectedTest1 = "_2015_00_Test_1_";
-        ExpectedTest2 = "_2015_00_Test_2_";
+        ExpectedTest1 = "101";
+        ExpectedTest2 = "48";
 
         ExpectedProd1 = "1586300";
         ExpectedProd2 = "3737498";
     }
 
-    /// <inheritdoc />
     protected override void InitParser()
     {
         _raw = Parser.Parse();
-    }
-
-    /// <inheritdoc />
-    public override void DumpInput()
-    {
-        DumpData();
     }
 
     protected override void ComputePart1()
@@ -95,16 +88,18 @@ public class Day02 : Day
 
     protected override void ProcessData()
     {
-        base.ProcessData();
-
         _data = [];
 
-        // Gromit do something!
         foreach (var line in _raw)
         {
             var parts = line.Split('x', StringSplitOptions.RemoveEmptyEntries).ToArray();
             _data.Add((parts[0].ToInt(), parts[1].ToInt(), parts[2].ToInt()));
         }
+    }
+
+    public override void DumpInput()
+    {
+        DumpData();
     }
 
     [Conditional("LOG")]
@@ -116,7 +111,6 @@ public class Day02 : Day
 
         Debug();
 
-        // _raw.DumpCollection();
         _data.DumpCollection();
     }
 }

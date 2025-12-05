@@ -50,8 +50,6 @@ public class Day00 : Day
 
     protected override void ProcessData()
     {
-        base.ProcessData();
-
         // Gromit do something!
         foreach (var line in _data)
         {

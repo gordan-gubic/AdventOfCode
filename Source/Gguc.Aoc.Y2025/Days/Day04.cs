@@ -25,17 +25,10 @@ public class Day04 : Day
         ExpectedProd2 = "8557";
     }
 
-    /// <inheritdoc />
     protected override void InitParser()
     {
         _raw = Parser.Parse();
         _data = Parser.ParseMapBool('@');
-    }
-
-    /// <inheritdoc />
-    public override void DumpInput()
-    {
-        DumpData();
     }
 
     protected override void ComputePart1()
@@ -95,12 +88,11 @@ public class Day04 : Day
 
     protected override void ProcessData()
     {
-        base.ProcessData();
+    }
 
-        // Gromit do something!
-        foreach (var line in _raw)
-        {
-        }
+    public override void DumpInput()
+    {
+        DumpData();
     }
 
     [Conditional("LOG")]

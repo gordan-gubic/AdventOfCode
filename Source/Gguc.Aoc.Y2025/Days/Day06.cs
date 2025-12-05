@@ -2,15 +2,15 @@
 
 namespace Gguc.Aoc.Y2025.Days;
 
-public class Day00 : Day
+public class Day06 : Day
 {
     private const int YEAR = 2025;
-    private const int DAY = 0;
+    private const int DAY = 06;
 
     private List<string> _raw;
     private List<string> _data;
 
-    public Day00(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day06(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
 
@@ -18,11 +18,11 @@ public class Day00 : Day
         ExecuteTest = true;
         ExecuteProd = true;
 
-        ExpectedTest1 = "_2025_00_Test_1_";
-        ExpectedTest2 = "_2025_00_Test_2_";
+        ExpectedTest1 = "_2025_06_Test_1_";
+        ExpectedTest2 = "_2025_06_Test_2_";
 
-        ExpectedProd1 = "_2025_00_Prod_1_";
-        ExpectedProd2 = "_2025_00_Prod_2_";
+        ExpectedProd1 = "_2025_06_Prod_1_";
+        ExpectedProd2 = "_2025_06_Prod_2_";
     }
 
     protected override void InitParser()

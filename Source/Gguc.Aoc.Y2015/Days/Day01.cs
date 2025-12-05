@@ -14,7 +14,7 @@ public class Day01 : Day
     {
         EnableDebug();
 
-        TestExample = false;
+        TestExample = true;
         ExecuteTest = true;
         ExecuteProd = true;
 
@@ -25,16 +25,9 @@ public class Day01 : Day
         ExpectedProd2 = "1771";
     }
 
-    /// <inheritdoc />
     protected override void InitParser()
     {
         _raw = Parser.Parse();
-    }
-
-    /// <inheritdoc />
-    public override void DumpInput()
-    {
-        DumpData();
     }
 
     protected override void ComputePart1()
@@ -103,15 +96,17 @@ public class Day01 : Day
 
     protected override void ProcessData()
     {
-        base.ProcessData();
-
         _data = new();
 
-        // Gromit do something!
         foreach (var line in _raw)
         {
             _data.Add(line.ToCharArray());
         }
+    }
+
+    public override void DumpInput()
+    {
+        DumpData();
     }
 
     [Conditional("LOG")]

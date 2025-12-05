@@ -25,13 +25,6 @@ public class Day01 : Day
         ExpectedProd2 = "6860";
     }
 
-    /// <inheritdoc />
-    protected override void InitParser()
-    {
-        _raw = Parser.Parse();
-    }
-
-    /// <inheritdoc />
     public override void DumpInput()
     {
         DumpData();
@@ -115,17 +108,19 @@ public class Day01 : Day
 
     protected override void ProcessData()
     {
-        base.ProcessData();
-
         _data = new();
 
-        // Gromit do something!
         foreach (var line in _raw)
         {
             var part1 = line[0];
             var part2 = line[1..].ToInt();
             _data.Add((part1, part2));
         }
+    }
+
+    protected override void InitParser()
+    {
+        _raw = Parser.Parse();
     }
 
     [Conditional("LOG")]
@@ -137,7 +132,6 @@ public class Day01 : Day
 
         Debug();
 
-        // _raw.DumpCollection();
         _data.DumpCollection();
     }
 }
