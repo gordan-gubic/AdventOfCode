@@ -1,5 +1,4 @@
 ﻿#define LOG
-#define STOPWATCH
 
 namespace Gguc.Aoc.Y2025.Days;
 

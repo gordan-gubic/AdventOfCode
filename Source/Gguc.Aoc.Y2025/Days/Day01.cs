@@ -1,5 +1,4 @@
 ﻿#define LOG
-#define STOPWATCH
 
 namespace Gguc.Aoc.Y2025.Days;
 
@@ -19,8 +18,8 @@ public class Day01 : Day
         ExecuteTest = true;
         ExecuteProd = true;
 
-        ExpectedTest1 = "1";
-        ExpectedTest2 = "1";
+        ExpectedTest1 = "3";
+        ExpectedTest2 = "6";
 
         ExpectedProd1 = "1158";
         ExpectedProd2 = "6860";

@@ -1,5 +1,4 @@
 ﻿#define LOG
-#define STOPWATCH
 
 namespace Gguc.Aoc.Y2015.Days;
 
@@ -14,7 +13,13 @@ public class Day03 : Day
     public Day03(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
-        Initialize();
+
+        TestExample = false;
+        ExecuteTest = true;
+        ExecuteProd = true;
+
+        ExpectedTest1 = "_2015_00_Test_1_";
+        ExpectedTest2 = "_2015_00_Test_2_";
 
         ExpectedProd1 = "2081";
         ExpectedProd2 = "2341";
@@ -23,9 +28,6 @@ public class Day03 : Day
     /// <inheritdoc />
     protected override void InitParser()
     {
-        Parser.Type = ParserFileType.Test;
-        Parser.Type = ParserFileType.Real;
-
         _raw = Parser.Parse();
     }
 
