@@ -18,49 +18,92 @@ public class Day05 : Day
         ExecuteTest = true;
         ExecuteProd = true;
 
-        ExpectedTest1 = "_2015_05_Test_1_";
-        ExpectedTest2 = "_2015_05_Test_2_";
+        ExpectedTest1 = "2";
+        ExpectedTest2 = "2";
 
-        ExpectedProd1 = "_2015_05_Prod_1_";
-        ExpectedProd2 = "_2015_05_Prod_2_";
+        ExpectedProd1 = "238";
+        ExpectedProd2 = "69";
     }
 
     protected override void InitParser()
     {
         _raw = Parser.Parse();
+        _data = Parser.Parse();
     }
 
     protected override void ComputePart1()
     {
-        Result = Count_Part01();
+        Result = CountNice(IsNice1);
     }
 
     protected override void ComputePart2()
     {
-        Result = Count_Part02();
+        Result = CountNice(IsNice2);
     }
 
-    private long Count_Part01()
+    private long CountNice(Func<string, bool> predicate)
     {
         var result = 0L;
+
+        foreach (var value in _data)
+        {
+            var isNice = predicate(value);
+            if (isNice) result++;
+
+            // Debug($"{new {value, isNice}}");
+        }
 
         return result;
     }
 
-    private long Count_Part02()
+    private bool IsNice1(string value)
     {
-        var result = 0L;
+        if (value.Contains("ab") || value.Contains("cd") || value.Contains("pq") || value.Contains("xy")) return false;
 
-        return result;
+        var isNice = false;
+        for (var i = 0; i < value.Length - 1; i++)
+        {
+            if (value[i] - value[i + 1] == 0)
+            {
+                isNice = true;
+                break;
+            }
+        }
+
+        var count = value.ToCharArray().Count(x => x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u');
+        return isNice && count >= 3;
+    }
+
+    private bool IsNice2(string value)
+    {
+        var isNice1 = false;
+        for (var i = 0; i < value.Length - 3; i++)
+        {
+            for (int j = i + 2; j < value.Length - 1; j++)
+            {
+                if (value[i] == value[j] && value[i + 1] == value[j + 1])
+                {
+                    isNice1 = true;
+                    break;
+                }
+            }
+        }
+
+        var isNice2 = false;
+        for (var i = 0; i < value.Length - 2; i++)
+        {
+            if (value[i] == value[i + 2])
+            {
+                isNice2 = true;
+                break;
+            }
+        }
+
+        return isNice1 && isNice2;
     }
 
     protected override void ProcessData()
     {
-        _data = [];
-
-        foreach (var line in _raw)
-        {
-        }
     }
 
     public override void DumpInput()

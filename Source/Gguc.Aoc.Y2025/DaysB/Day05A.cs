@@ -1,17 +1,18 @@
 ﻿#define LOG
+#define STOPWATCH
 
 namespace Gguc.Aoc.Y2025.Days;
 
-public class Day05 : Day
+public class Day05A : Day
 {
     private const int YEAR = 2025;
-    private const int DAY = 05;
+    private const int DAY = 0501;
 
     private List<string> _raw;
-    private List<Range<long>> _ranges;
+    private List<(long, long)> _ranges;
     private List<long> _data;
 
-    public Day05(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
+    public Day05A(ILog log, IParser parser) : base(log, parser, YEAR, DAY)
     {
         EnableDebug();
 
@@ -26,9 +27,16 @@ public class Day05 : Day
         ExpectedProd2 = "361615643045059";
     }
 
+    /// <inheritdoc />
     protected override void InitParser()
     {
         _raw = Parser.Parse();
+    }
+
+    /// <inheritdoc />
+    public override void DumpInput()
+    {
+        DumpData();
     }
 
     protected override void ComputePart1()
@@ -62,7 +70,7 @@ public class Day05 : Day
     {
         foreach (var range in _ranges)
         {
-            if (data >= range.Lower && data <= range.Upper) return true;
+            if (data >= range.Item1 && data <= range.Item2) return true;
         }
 
         return false;
@@ -72,36 +80,49 @@ public class Day05 : Day
     {
         var result = 0L;
 
-        var ranges = _ranges.OrderBy(r => r.Lower).ThenByDescending(r => r.Upper);
-        var current = ranges.First();
+        var ranges = _ranges.OrderByDescending(r => r.Item2).OrderBy(r => r.Item1);
 
-        foreach (var range in ranges.Skip(1))
+        var min = ranges.First().Item1;
+        var max = ranges.First().Item2;
+
+        foreach (var range in ranges)
         {
-            var merge = range.Merge(current);
-            if (merge.Item1)
+            var x1 = range.Item1;
+            var x2 = range.Item2;
+
+            if (x1 <= max || x2 <= max)
             {
-                current = merge.Item2;
+                min = long.Min(min, x1);
+                max = long.Max(max, x2);
                 continue;
             }
 
-            result += current.Length;
-            Debug($"{new { current.Lower, current.Upper, current.Length, result }}");
-            
-            current = range;
+            var score = max - min + 1;
+            result += score;
+
+            Debug($"{new { min, max, score, result }}");
+
+            min = x1;
+            max = x2;
         }
 
-        result += current.Length;
-        Debug($"{new { current.Lower, current.Upper, current.Length, result }}");
+        var s1 = max - min + 1;
+        result += s1;
 
+        Debug($"{new { min, max, s1, result }}");
+        
         return result;
     }
 
     protected override void ProcessData()
     {
+        base.ProcessData();
+
         var isRanges = true;
         _ranges = [];
         _data = [];
 
+        // Gromit do something!
         foreach (var line in _raw)
         {
             if (isRanges)
@@ -113,16 +134,11 @@ public class Day05 : Day
                 }
 
                 var rs = line.Split('-', StringSplitOptions.RemoveEmptyEntries).Select(x => x.ToLong()).ToArray();
-                _ranges.Add(new Range<long>(rs[0], rs[1]));
+                _ranges.Add((rs[0], rs[1]));
             }
 
             _data.Add(line.ToLong());
         }
-    }
-
-    public override void DumpInput()
-    {
-        DumpData();
     }
 
     [Conditional("LOG")]
