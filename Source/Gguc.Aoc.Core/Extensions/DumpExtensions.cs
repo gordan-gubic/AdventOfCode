@@ -48,6 +48,16 @@ public static class DumpExtensions
     }
 
     [Conditional("LOG")]
+    public static void DumpJsonTuples(this object input, string title = null, bool newLine = false)
+    {
+        DumpTitle(title);
+
+        var nl = newLine ? Environment.NewLine : "";
+
+        Trace.WriteLine($"{nl}{input.ToJsonWithFields()}");
+    }
+
+    [Conditional("LOG")]
     public static void DumpCollection(this IEnumerable input, string title = null, bool newLine = false)
     {
         DumpTitle(title);

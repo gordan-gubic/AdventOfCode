@@ -14,14 +14,21 @@ public static class JsonExtensions
     private static readonly JsonSerializerOptions DefaultJsonSerializerSettings = new()
     {
         Converters = { new JsonStringEnumConverter() },
-        PropertyNameCaseInsensitive = true
+        PropertyNameCaseInsensitive = true,
     };
 
     private static readonly JsonSerializerOptions IndentedJsonSerializerSettings = new()
     {
         Converters = { new JsonStringEnumConverter() },
         WriteIndented = true,
-        PropertyNameCaseInsensitive = true
+        PropertyNameCaseInsensitive = true,
+    };
+
+    private static readonly JsonSerializerOptions IncludeFieldsJsonSerializerSettings = new()
+    {
+        Converters = { new JsonStringEnumConverter() },
+        PropertyNameCaseInsensitive = true,
+        IncludeFields = true
     };
 
     /// <summary>
@@ -71,6 +78,24 @@ public static class JsonExtensions
         try
         {
             return JsonSerializer.Serialize(value, IndentedJsonSerializerSettings);
+        }
+        catch (Exception ex)
+        {
+            Trace.TraceWarning($"Error occurred during serialization to json. Value=[{value}]. Exception=[{ex.Message}]!");
+            return default;
+        }
+    }
+
+    /// <summary>
+    /// Serializes the specified object to an JSON string including object fields.
+    /// </summary>
+    /// <param name="value">The object to serialize.</param>
+    /// <returns>An indented JSON string representation of the object.</returns>
+    public static string ToJsonWithFields(this object value)
+    {
+        try
+        {
+            return JsonSerializer.Serialize(value, IncludeFieldsJsonSerializerSettings);
         }
         catch (Exception ex)
         {
