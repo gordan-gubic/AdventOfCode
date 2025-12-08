@@ -52,6 +52,15 @@ public static class PointsExtensions
     {
         return Math.Abs(point1.X - point2.X) + Math.Abs(point1.Y - point2.Y);
     }
+    public static double ShortestDistance(this Point p1, Point p2)
+    {
+        return Math.Sqrt(Math.Pow((p1.X - p2.X), 2) + Math.Pow((p1.Y - p2.Y), 2));
+    }
+
+    public static double ShortestDistance(this Point3d p1, Point3d p2)
+    {
+        return Math.Sqrt(Math.Pow((p1.X - p2.X), 2) + Math.Pow((p1.Y - p2.Y), 2) + Math.Pow((p1.Z - p2.Z), 2));
+    }
 
     public static (int, int) DegreeToDirection(this int degree)
     {
