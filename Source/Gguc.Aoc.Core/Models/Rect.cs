@@ -9,6 +9,7 @@ public readonly struct Rect
         Y1 = y;
         Y2 = y + size;
     }
+
     public Rect(int x1, int y1, int x2, int y2)
     {
         X1 = x1;
