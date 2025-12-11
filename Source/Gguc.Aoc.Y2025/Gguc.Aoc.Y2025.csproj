@@ -1,11 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Backup\FactoryService01.cs" />
+    <Compile Remove="Backup\FactoryService02.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Gguc.Aoc.Core\Gguc.Aoc.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Memory\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Backup\FactoryService01.cs" />
+    <None Include="Backup\FactoryService02.cs" />
   </ItemGroup>
 
 </Project>
