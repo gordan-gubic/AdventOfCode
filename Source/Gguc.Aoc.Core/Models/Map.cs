@@ -200,6 +200,17 @@ public class Map<T>
         return count;
     }
 
+    public void ForEach(Action<T> action)
+    {
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                action(this[x, y]);
+            }
+        }
+    }
+
     public void ForEach(Action<int, int> action)
     {
         for (var y = 0; y < Height; y++)

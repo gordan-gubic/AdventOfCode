@@ -53,8 +53,6 @@ public class Day18 : Day
 
     private long CalculateVolume(List<Dig> digs)
     {
-        var sum = 0L;
-
         var points = new List<PointLong>();
 
         var current = new PointLong();

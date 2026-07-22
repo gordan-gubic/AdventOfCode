@@ -58,8 +58,6 @@ public class Day17_01 : Day
 
     private long SumHeatLoss()
     {
-        var sum = 0L;
-
         var start = new Point(0, 0);
         var end = new Point(_map.Width - 1, _map.Height - 1);
 

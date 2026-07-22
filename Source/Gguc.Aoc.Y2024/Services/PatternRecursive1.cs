@@ -39,8 +39,6 @@ public class PatternRecursive1
 
     private bool ProcessItem(PatternStep step)
     {
-        var sum = 0L;
-
         step.Path = $"{step.Path}{step.Pattern}";
         step.Path2 = $"{step.Path2},{step.Pattern}";
         

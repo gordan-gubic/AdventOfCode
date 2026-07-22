@@ -202,10 +202,10 @@ public class Day16 : Day
         _ticketRules = new Dictionary<string, TicketRule>();
         _data[0].ForEach(x => _ticketRules.AddToDictionary(ToTicketRule(x)));
 
-        _ticket = _data[1].FirstOrDefault().ToSequence();
+        _ticket = _data[1].FirstOrDefault().ToLongSequence();
 
         _nearbyTickets = new List<List<long>>();
-        _data[2].ForEach(x => _nearbyTickets.Add(x.ToSequence()));
+        _data[2].ForEach(x => _nearbyTickets.Add(x.ToLongSequence()));
     }
 
     private string _pattern = @"^(?<name>[\w ]+): (?<a1>\d+)-(?<a2>\d+) or (?<b1>\d+)-(?<b2>\d+)$";

@@ -7,14 +7,14 @@ using NLog;
 /// </summary>
 public class TraceLog : ILog
 {
-    private static readonly Logger Log = LogManager.GetLogger("Tdx.Phoenix.Wpf");
+    private static readonly Logger Log = LogManager.GetLogger("GGUC.AdventOfCode");
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TraceLog"/> class.
     /// </summary>
     public TraceLog()
     {
-        System.Diagnostics.Trace.Listeners.Add(new NLogTraceListener());
+        // System.Diagnostics.Trace.Listeners.Add(new NLogTraceListener());
         var entry = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
         var classId = entry.GetName().Name;
         this.Info("\n".PadRight(120, '_'));

@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Solution/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Link.txt" />
+    <File Path="readme.md" />
+    <File Path="Settings.XamlStyler" />
+  </Folder>
+  <Project Path="Source/Gguc.Aoc.ConsoleApp/Gguc.Aoc.ConsoleApp.csproj" />
+  <Project Path="Source/Gguc.Aoc.Core/Gguc.Aoc.Core.csproj" />
+  <Project Path="Source/Gguc.Aoc.Hub/Gguc.Aoc.Hub.csproj" />
+  <Project Path="Source/Gguc.Aoc.Resources/Gguc.Aoc.Resources.csproj" />
+  <Project Path="Source/Gguc.Aoc.Sandbox/Gguc.Aoc.Sandbox.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2015/Gguc.Aoc.Y2015.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2018/Gguc.Aoc.Y2018.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2019/Gguc.Aoc.Y2019.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2020/Gguc.Aoc.Y2020.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2021/Gguc.Aoc.Y2021.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2022/Gguc.Aoc.Y2022.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2023/Gguc.Aoc.Y2023.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2024/Gguc.Aoc.Y2024.csproj" />
+  <Project Path="Source/Gguc.Aoc.Y2025/Gguc.Aoc.Y2025.csproj" />
+</Solution>

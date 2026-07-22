@@ -18,7 +18,7 @@ public class Day11 : Day
         EnableDebug();
 
         TestExample = false;
-        ExecuteTest = true;
+        ExecuteTest = false;
         ExecuteProd = true;
 
         ExpectedTest1 = "5";

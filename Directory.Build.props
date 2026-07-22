@@ -19,9 +19,19 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Suppress warning about multiple NuGet sources. -->
+    <!-- Suppress warning about restoring .NET Framework versions of NuGets. -->
+    <!-- Suppress warning about Avalonia in-editor previews not working. -->
+    <NoWarn>$(NoWarn);NETSDK1233;NU1507;NU1701;AVLN3001;CA1062</NoWarn>
+
+    <!-- Throw error if platform-specific code is used in platform-agnostic project -->
+    <WarningsAsErrors>$(WarningsAsErrors);CA1416</WarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.0.0" />
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="NLog" />
   </ItemGroup>
 </Project>

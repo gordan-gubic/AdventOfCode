@@ -35,6 +35,16 @@ public static class StringExtensions
         return string.Join(separator, values);
     }
 
+    public static List<string> ToSequence(this string input, char separator = ',')
+    {
+        return input.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
+    }
+
+    public static List<string> ToSequence(this string input, string separator)
+    {
+        return input.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
+    }
+
     public static List<int> ToIntSequence(this string input, char separator = ',')
     {
         var list = new List<int>();
@@ -42,7 +52,7 @@ public static class StringExtensions
         return list;
     }
 
-    public static List<long> ToSequence(this string input, char separator = ',')
+    public static List<long> ToLongSequence(this string input, char separator = ',')
     {
         var list = new List<long>();
         input.Split(separator, StringSplitOptions.RemoveEmptyEntries).ForEach(x => list.Add(x.ToLong()));
